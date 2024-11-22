@@ -16,3 +16,6 @@ index.html       # Structure global de la page
 utils.js         # Fonctions utilitaires partagées (ex: random, calculs)
 game.js          # Logique principale du jeu (règles, mouvement des pions)
 style.css
+
+
+test
