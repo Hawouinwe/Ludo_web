@@ -1,0 +1,237 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/* Plateau */
+
+.Plateau{
+    display : grid;
+    grid-template-columns: repeat(15, 1fr) ;
+    grid-template-rows: repeat(15, 1fr);
+    gap: 2px;
+    width: 600px;
+    height: 600px;
+    border: 2px solid black;
+}
+
+.Plateau div {
+    border: 1px solid black; /* Light border for each square */
+}
+
+
+/* Classe : */
+
+.Rouge{
+    background-color: red;
+}
+
+.Bleu{
+    background-color: blue;
+}
+
+.Jaune{
+    background-color: yellow;
+}
+
+.Vert{
+    background-color: green;
+}
+
+
+.estRouge{
+    background-color:  rgb(255, 200, 200);
+}
+.estBleu{
+    background-color:  rgb(200, 200, 255);
+}
+.estJaune{
+    background-color:  rgb(255, 255, 200);
+}
+.estVert{
+    background-color:  rgb(200, 255, 200);
+}
+
+
+
+
+/* Positionnement de chaque objet : */
+
+#Centre{
+    grid-column-start: 7;
+    grid-column-end: span 3;
+    grid-row-start: 7;
+    grid-row-end: span 3;
+    border-color: black;
+    border-style: solid;
+}
+
+/* Rangements des chevaux */
+#Rangement_Rouge {
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    grid-row-start: 1;
+    grid-row-end: span 6;
+}
+
+#Rangement_Bleu {
+    grid-column-start: 10;
+    grid-column-end: span 6;
+    grid-row-start: 1;
+    grid-row-end: span 6;
+}
+
+#Rangement_Jaune {
+    grid-column-start: 10;
+    grid-column-end: span 6;
+    grid-row-start: 10;
+    grid-row-end: span 6;
+}
+
+#Rangement_Vert {
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    grid-row-start: 10;
+    grid-row-end: span 6;
+}
+
+/* Chemin Final Rouge */
+#Chemin_Rouge_1{
+    grid-column-start: 2;
+    grid-row-start: 8;
+}
+#Chemin_Rouge_2{
+    grid-column-start: 3;
+    grid-row-start: 8;
+}
+#Chemin_Rouge_3{
+    grid-column-start: 4;
+    grid-row-start: 8;
+}
+#Chemin_Rouge_4{
+    grid-column-start: 5;
+    grid-row-start: 8;
+}
+#Chemin_Rouge_5{
+    grid-column-start: 6;
+    grid-row-start: 8;
+}
+
+/* Chemin Final Bleu */
+#Chemin_Bleu_1{
+    grid-column-start: 8;
+    grid-row-start: 2;
+}
+#Chemin_Bleu_2{
+    grid-column-start: 8;
+    grid-row-start: 3;
+}
+#Chemin_Bleu_3{
+    grid-column-start: 8;
+    grid-row-start: 4;
+}
+#Chemin_Bleu_4{
+    grid-column-start: 8;
+    grid-row-start: 5;
+}
+#Chemin_Bleu_5{
+    grid-column-start: 8;
+    grid-row-start: 6;
+}
+
+/* Chemin Final Jaune */
+#Chemin_Jaune_1{
+    grid-column-start: 14;
+    grid-row-start: 8;
+}
+#Chemin_Jaune_2{
+    grid-column-start: 13;
+    grid-row-start: 8;
+}
+#Chemin_Jaune_3{
+    grid-column-start: 12;
+    grid-row-start: 8;
+}
+#Chemin_Jaune_4{
+    grid-column-start: 11;
+    grid-row-start: 8;
+}
+#Chemin_Jaune_5{
+    grid-column-start: 10;
+    grid-row-start: 8;
+}
+
+/* Chemin Final Vert */
+#Chemin_Vert_1{
+    grid-column-start: 8;
+    grid-row-start: 14;
+}
+#Chemin_Vert_2{
+    grid-column-start: 8;
+    grid-row-start: 13;
+}
+#Chemin_Vert_3{
+    grid-column-start: 8;
+    grid-row-start: 12;
+}
+#Chemin_Vert_4{
+    grid-column-start: 8;
+    grid-row-start: 11;
+}
+#Chemin_Vert_5{
+    grid-column-start: 8;
+    grid-row-start: 10;
+}
+
+/* Cases de départs */
+#Depart_Rouge{
+    grid-area: 7 / 2;
+}
+#Depart_Bleu{
+    grid-area: 2 / 9;
+}
+#Depart_Jaune{
+    grid-area: 9 / 14;
+}
+#Depart_Vert{
+    grid-area: 14 / 7;
+}
+
+/* Cases finales (avant le chemin final) */
+#Case_Fin_Rouge{
+    grid-area: 8 / 1;
+}
+#Case_Fin_Bleu{
+    grid-area: 1 / 8;
+}
+#Case_Fin_Jaune{
+    grid-area: 8 / 15;
+}
+#Case_Fin_Vert{
+    grid-area: 15 / 8;
+}
+
+/* Cases avec étoiles */
+#Etoile_Rouge{
+    grid-area: 3 / 7;
+}
+#Etoile_Bleu{
+    grid-area: 7 / 13;
+}
+#Etoile_Jaune{
+    grid-area: 13 / 9;
+}
+#Etoile_Vert{
+    grid-area: 9 / 3;
+}
