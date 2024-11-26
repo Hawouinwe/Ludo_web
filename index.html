@@ -1,151 +1,151 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu du Ludo</title>
-    <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jeu du Ludo</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script src="js/utils.js"></script>
-    <script src="js/dice.js"></script>
-    <script src="js/board.js"></script>
-    <script src="js/player.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/game.js"></script>
+	<script type="module" src="js/utils.js"></script>
+	<script type="module" src="js/dice.js"></script>
+	<script type="module" src="js/board.js"></script>
+	<script type="module" src="js/player.js"></script>
+	<script type="module" src="js/ui.js"></script>
+	<script type="module" src="js/game.js"></script>
 
-    <header>
-            <!-- Youssouf -->
-    </header>
-
-
-
-
-    <section>
-        <!-- Section du Plateau de jeu -->
-         
-        <div class="Plateau">
-
-            <!-- Centre -->
-            <div id="Centre"> </div>
-
-            <!-- Rangements des chevaux -->
-            <div class="Rangement Rouge" id="Rangement_Rouge"> </div>
-            <div class="Rangement Bleu"  id="Rangement_Bleu"> </div>
-            <div class="Rangement Jaune" id="Rangement_Jaune"> </div>
-            <div class="Rangement Vert"  id="Rangement_Vert"> </div>
-
-            <!-- Chemins finaux -->
-            <!-- Rouge -->
-            <div class="Chemin_final Rouge" id="Chemin_Rouge_1"> </div>
-            <div class="Chemin_final Rouge" id="Chemin_Rouge_2"> </div>
-            <div class="Chemin_final Rouge" id="Chemin_Rouge_3"> </div>
-            <div class="Chemin_final Rouge" id="Chemin_Rouge_4"> </div>
-            <div class="Chemin_final Rouge" id="Chemin_Rouge_5"> </div>
-
-            <!-- Bleu -->
-            <div class="Chemin_final Bleu" id="Chemin_Bleu_1"> </div>
-            <div class="Chemin_final Bleu" id="Chemin_Bleu_2"> </div>
-            <div class="Chemin_final Bleu" id="Chemin_Bleu_3"> </div>
-            <div class="Chemin_final Bleu" id="Chemin_Bleu_4"> </div>
-            <div class="Chemin_final Bleu" id="Chemin_Bleu_5"> </div>
-
-            <!-- Jaune -->
-            <div class="Chemin_final Jaune" id="Chemin_Jaune_1"> </div>
-            <div class="Chemin_final Jaune" id="Chemin_Jaune_2"> </div>
-            <div class="Chemin_final Jaune" id="Chemin_Jaune_3"> </div>
-            <div class="Chemin_final Jaune" id="Chemin_Jaune_4"> </div>
-            <div class="Chemin_final Jaune" id="Chemin_Jaune_5"> </div>
-
-            <!-- Vert -->
-            <div class="Chemin_final Vert" id="Chemin_Vert_1"> </div>
-            <div class="Chemin_final Vert" id="Chemin_Vert_2"> </div>
-            <div class="Chemin_final Vert" id="Chemin_Vert_3"> </div>
-            <div class="Chemin_final Vert" id="Chemin_Vert_4"> </div>
-            <div class="Chemin_final Vert" id="Chemin_Vert_5"> </div>
-
-
-            <!-- Départs -->
-            <div class="Depart Rouge" id="Depart_Rouge"> ° </div>
-            <div class="Depart Bleu"  id="Depart_Bleu"> ° </div>
-            <div class="Depart Jaune" id="Depart_Jaune"> ° </div>
-            <div class="Depart Vert"  id="Depart_Vert"> ° </div>
-
-            <!-- Cases finales (avant le chemin final) -->
-            <div class="Case_Fin estRouge" id="Case_Fin_Rouge"> > </div>
-            <div class="Case_Fin estBleu"  id="Case_Fin_Bleu"> > </div>
-            <div class="Case_Fin estJaune" id="Case_Fin_Jaune"> > </div>
-            <div class="Case_Fin estVert"  id="Case_Fin_Vert"> > </div>
-
-            <!-- Cases avec étoile -->
-            <div class="Chemin Etoile estRouge" id="Etoile_Rouge"> * </div>
-            <div class="Chemin Etoile estBleu"  id="Etoile_Bleu"> * </div>
-            <div class="Chemin Etoile estJaune" id="Etoile_Jaune"> * </div>
-            <div class="Chemin Etoile estVert"  id="Etoile_Vert"> * </div>
-
-
-            <!-- Reste du chemin -->
-
-            <!-- Entre Rouge et Bleu -->
-            <div class="Chemin" id="Ch_1"> </div>
-            <div class="Chemin" id="Ch_2"> </div>
-            <div class="Chemin" id="Ch_3"> </div>
-            <div class="Chemin" id="Ch_4"> </div>
-            <div class="Chemin" id="Ch_5"> </div>
-            <div class="Chemin" id="Ch_6"> </div>
-            <div class="Chemin" id="Ch_7"> </div>
-            <div class="Chemin" id="Ch_8"> </div>
-            <div class="Chemin" id="Ch_9"> </div>
-            <div class="Chemin" id="Ch_10"> </div>
-
-            <!-- Entre Bleu et Jaune -->
-            <div class="Chemin" id="Ch_11"> </div>
-            <div class="Chemin" id="Ch_12"> </div>
-            <div class="Chemin" id="Ch_13"> </div>
-            <div class="Chemin" id="Ch_14"> </div>
-            <div class="Chemin" id="Ch_15"> </div>
-            <div class="Chemin" id="Ch_16"> </div>
-            <div class="Chemin" id="Ch_17"> </div>
-            <div class="Chemin" id="Ch_18"> </div>
-            <div class="Chemin" id="Ch_19"> </div>
-            <div class="Chemin" id="Ch_20"> </div>
-            <!-- Entre Jaune et Vert -->
-
-            <div class="Chemin" id="Ch_21"> </div>
-            <div class="Chemin" id="Ch_22"> </div>
-            <div class="Chemin" id="Ch_23"> </div>
-            <div class="Chemin" id="Ch_24"> </div>
-            <div class="Chemin" id="Ch_25"> </div>
-            <div class="Chemin" id="Ch_26"> </div>
-            <div class="Chemin" id="Ch_27"> </div>
-            <div class="Chemin" id="Ch_28"> </div>
-            <div class="Chemin" id="Ch_29"> </div>
-            <div class="Chemin" id="Ch_30"> </div>
-            <!-- Entre Vert et Rouge -->
-
-
-            <div class="Chemin" id="Ch_31"> </div>
-            <div class="Chemin" id="Ch_32"> </div>
-            <div class="Chemin" id="Ch_33"> </div>
-            <div class="Chemin" id="Ch_34"> </div>
-            <div class="Chemin" id="Ch_35"> </div>
-            <div class="Chemin" id="Ch_36"> </div>
-            <div class="Chemin" id="Ch_37"> </div>
-            <div class="Chemin" id="Ch_38"> </div>
-            <div class="Chemin" id="Ch_39"> </div>
-            <div class="Chemin" id="Ch_40"> </div>
-
-        </div>
-    </section>
+	<header>
+		<!-- Youssouf -->
+	</header>
 
 
 
 
+	<section>
+		<!-- Section du Plateau de jeu -->
+		
+		<div class="Plateau">
+
+			<!-- Centre -->
+			<div id="Centre"> </div>
+
+			<!-- Rangements des chevaux -->
+			<div class="Rangement Rouge" id="Rangement_Rouge"> </div>
+			<div class="Rangement Bleu"  id="Rangement_Bleu"> </div>
+			<div class="Rangement Jaune" id="Rangement_Jaune"> </div>
+			<div class="Rangement Vert"  id="Rangement_Vert"> </div>
+
+			<!-- Chemins finaux -->
+			<!-- Rouge -->
+			<div class="Chemin_final Rouge" id="Chemin_Rouge_1"> </div>
+			<div class="Chemin_final Rouge" id="Chemin_Rouge_2"> </div>
+			<div class="Chemin_final Rouge" id="Chemin_Rouge_3"> </div>
+			<div class="Chemin_final Rouge" id="Chemin_Rouge_4"> </div>
+			<div class="Chemin_final Rouge" id="Chemin_Rouge_5"> </div>
+
+			<!-- Bleu -->
+			<div class="Chemin_final Bleu" id="Chemin_Bleu_1"> </div>
+			<div class="Chemin_final Bleu" id="Chemin_Bleu_2"> </div>
+			<div class="Chemin_final Bleu" id="Chemin_Bleu_3"> </div>
+			<div class="Chemin_final Bleu" id="Chemin_Bleu_4"> </div>
+			<div class="Chemin_final Bleu" id="Chemin_Bleu_5"> </div>
+
+			<!-- Jaune -->
+			<div class="Chemin_final Jaune" id="Chemin_Jaune_1"> </div>
+			<div class="Chemin_final Jaune" id="Chemin_Jaune_2"> </div>
+			<div class="Chemin_final Jaune" id="Chemin_Jaune_3"> </div>
+			<div class="Chemin_final Jaune" id="Chemin_Jaune_4"> </div>
+			<div class="Chemin_final Jaune" id="Chemin_Jaune_5"> </div>
+
+			<!-- Vert -->
+			<div class="Chemin_final Vert" id="Chemin_Vert_1"> </div>
+			<div class="Chemin_final Vert" id="Chemin_Vert_2"> </div>
+			<div class="Chemin_final Vert" id="Chemin_Vert_3"> </div>
+			<div class="Chemin_final Vert" id="Chemin_Vert_4"> </div>
+			<div class="Chemin_final Vert" id="Chemin_Vert_5"> </div>
 
 
-    <footer>
-        <!-- Youssouf -->
-    </footer>
+			<!-- Départs -->
+			<div class="Depart Rouge" id="Depart_Rouge"> ° </div>
+			<div class="Depart Bleu"  id="Depart_Bleu"> ° </div>
+			<div class="Depart Jaune" id="Depart_Jaune"> ° </div>
+			<div class="Depart Vert"  id="Depart_Vert"> ° </div>
+
+			<!-- Cases finales (avant le chemin final) -->
+			<div class="Case_Fin estRouge" id="Case_Fin_Rouge"> > </div>
+			<div class="Case_Fin estBleu"  id="Case_Fin_Bleu"> > </div>
+			<div class="Case_Fin estJaune" id="Case_Fin_Jaune"> > </div>
+			<div class="Case_Fin estVert"  id="Case_Fin_Vert"> > </div>
+
+			<!-- Cases avec étoile -->
+			<div class="Chemin Etoile estRouge" id="Etoile_Rouge"> * </div>
+			<div class="Chemin Etoile estBleu"  id="Etoile_Bleu"> * </div>
+			<div class="Chemin Etoile estJaune" id="Etoile_Jaune"> * </div>
+			<div class="Chemin Etoile estVert"  id="Etoile_Vert"> * </div>
+
+
+			<!-- Reste du chemin -->
+
+			<!-- Entre Rouge et Bleu -->
+			<div class="Chemin" id="Ch_1"> </div>
+			<div class="Chemin" id="Ch_2"> </div>
+			<div class="Chemin" id="Ch_3"> </div>
+			<div class="Chemin" id="Ch_4"> </div>
+			<div class="Chemin" id="Ch_5"> </div>
+			<div class="Chemin" id="Ch_6"> </div>
+			<div class="Chemin" id="Ch_7"> </div>
+			<div class="Chemin" id="Ch_8"> </div>
+			<div class="Chemin" id="Ch_9"> </div>
+			<div class="Chemin" id="Ch_10"> </div>
+
+			<!-- Entre Bleu et Jaune -->
+			<div class="Chemin" id="Ch_11"> </div>
+			<div class="Chemin" id="Ch_12"> </div>
+			<div class="Chemin" id="Ch_13"> </div>
+			<div class="Chemin" id="Ch_14"> </div>
+			<div class="Chemin" id="Ch_15"> </div>
+			<div class="Chemin" id="Ch_16"> </div>
+			<div class="Chemin" id="Ch_17"> </div>
+			<div class="Chemin" id="Ch_18"> </div>
+			<div class="Chemin" id="Ch_19"> </div>
+			<div class="Chemin" id="Ch_20"> </div>
+			<!-- Entre Jaune et Vert -->
+
+			<div class="Chemin" id="Ch_21"> </div>
+			<div class="Chemin" id="Ch_22"> </div>
+			<div class="Chemin" id="Ch_23"> </div>
+			<div class="Chemin" id="Ch_24"> </div>
+			<div class="Chemin" id="Ch_25"> </div>
+			<div class="Chemin" id="Ch_26"> </div>
+			<div class="Chemin" id="Ch_27"> </div>
+			<div class="Chemin" id="Ch_28"> </div>
+			<div class="Chemin" id="Ch_29"> </div>
+			<div class="Chemin" id="Ch_30"> </div>
+			<!-- Entre Vert et Rouge -->
+
+
+			<div class="Chemin" id="Ch_31"> </div>
+			<div class="Chemin" id="Ch_32"> </div>
+			<div class="Chemin" id="Ch_33"> </div>
+			<div class="Chemin" id="Ch_34"> </div>
+			<div class="Chemin" id="Ch_35"> </div>
+			<div class="Chemin" id="Ch_36"> </div>
+			<div class="Chemin" id="Ch_37"> </div>
+			<div class="Chemin" id="Ch_38"> </div>
+			<div class="Chemin" id="Ch_39"> </div>
+			<div class="Chemin" id="Ch_40"> </div>
+
+		</div>
+	</section>
+
+
+
+
+
+
+	<footer>
+		<!-- Youssouf -->
+	</footer>
 
 </body>
 </html>
