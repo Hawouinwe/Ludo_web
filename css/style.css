@@ -83,13 +83,56 @@ body {
     grid-column-end: span 6;
     grid-row-start: 1;
     grid-row-end: span 6;
+
+    display : grid;
+    grid-template-columns: repeat(4, 1fr) ;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
 }
+#subhome_red_0 {
+    grid-column-start : 2;
+    grid-row-start : 2;
+}
+#subhome_red_1 {
+    grid-column-start : 3;
+    grid-row-start : 2;
+}
+#subhome_red_2 {
+    grid-column-start : 2;
+    grid-row-start : 3;
+}
+#subhome_red_3 {
+    grid-column-start : 3;
+    grid-row-start : 3;
+}
+
 
 #home_blue {
     grid-column-start: 10;
     grid-column-end: span 6;
     grid-row-start: 1;
     grid-row-end: span 6;
+
+    display : grid;
+    grid-template-columns: repeat(4, 1fr) ;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+}
+#subhome_blue_0 {
+    grid-column-start : 2;
+    grid-row-start : 2;
+}
+#subhome_blue_1 {
+    grid-column-start : 3;
+    grid-row-start : 2;
+}
+#subhome_blue_2 {
+    grid-column-start : 2;
+    grid-row-start : 3;
+}
+#subhome_blue_3 {
+    grid-column-start : 3;
+    grid-row-start : 3;
 }
 
 #home_yellow {
@@ -97,6 +140,27 @@ body {
     grid-column-end: span 6;
     grid-row-start: 10;
     grid-row-end: span 6;
+
+    display : grid;
+    grid-template-columns: repeat(4, 1fr) ;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+}
+#subhome_yellow_0 {
+    grid-column-start : 2;
+    grid-row-start : 2;
+}
+#subhome_yellow_1 {
+    grid-column-start : 3;
+    grid-row-start : 2;
+}
+#subhome_yellow_2 {
+    grid-column-start : 2;
+    grid-row-start : 3;
+}
+#subhome_yellow_3 {
+    grid-column-start : 3;
+    grid-row-start : 3;
 }
 
 #home_green {
@@ -104,6 +168,27 @@ body {
     grid-column-end: span 6;
     grid-row-start: 10;
     grid-row-end: span 6;
+
+    display : grid;
+    grid-template-columns: repeat(4, 1fr) ;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+}
+#subhome_green_0 {
+    grid-column-start : 2;
+    grid-row-start : 2;
+}
+#subhome_green_1 {
+    grid-column-start : 3;
+    grid-row-start : 2;
+}
+#subhome_green_2 {
+    grid-column-start : 2;
+    grid-row-start : 3;
+}
+#subhome_green_3 {
+    grid-column-start : 3;
+    grid-row-start : 3;
 }
 
 /* Chemin Final rouge */
