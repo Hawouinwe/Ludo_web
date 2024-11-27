@@ -81,11 +81,11 @@ class Pawn {
     }
 
 
-    exitStartZone()
+    exitStartZone() {}
 
-    enterStartZone()
+    enterStartZone() {}
 
-    enterFinalZone()
+    enterFinalZone() {}
 
 
 

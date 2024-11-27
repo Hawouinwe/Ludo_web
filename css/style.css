@@ -16,7 +16,7 @@ body {
 
 /* Plateau */
 
-.Plateau{
+.board{
     display : grid;
     grid-template-columns: repeat(15, 1fr) ;
     grid-template-rows: repeat(15, 1fr);
@@ -26,40 +26,40 @@ body {
     border: 2px solid black;
 }
 
-.Plateau div {
+.board div {
     border: 1px solid black; /* Light border for each square */
 }
 
 
 /* Classe : */
 
-.Rouge{
+.red{
     background-color: red;
 }
 
-.Bleu{
+.blue{
     background-color: blue;
 }
 
-.Jaune{
+.yellow{
     background-color: yellow;
 }
 
-.Vert{
+.green{
     background-color: green;
 }
 
 
-.estRouge{
+.isred{
     background-color:  rgb(255, 200, 200);
 }
-.estBleu{
+.isblue{
     background-color:  rgb(200, 200, 255);
 }
-.estJaune{
+.isyellow{
     background-color:  rgb(255, 255, 200);
 }
-.estVert{
+.isgreen{
     background-color:  rgb(200, 255, 200);
 }
 
@@ -68,7 +68,7 @@ body {
 
 /* Positionnement de chaque objet : */
 
-#Centre{
+#center{
     grid-column-start: 7;
     grid-column-end: span 3;
     grid-row-start: 7;
@@ -77,161 +77,161 @@ body {
     border-style: solid;
 }
 
-/* Rangements des chevaux */
-#Rangement_Rouge {
+/* Maisons des chevaux */
+#home_red {
     grid-column-start: 1;
     grid-column-end: span 6;
     grid-row-start: 1;
     grid-row-end: span 6;
 }
 
-#Rangement_Bleu {
+#home_blue {
     grid-column-start: 10;
     grid-column-end: span 6;
     grid-row-start: 1;
     grid-row-end: span 6;
 }
 
-#Rangement_Jaune {
+#home_yellow {
     grid-column-start: 10;
     grid-column-end: span 6;
     grid-row-start: 10;
     grid-row-end: span 6;
 }
 
-#Rangement_Vert {
+#home_green {
     grid-column-start: 1;
     grid-column-end: span 6;
     grid-row-start: 10;
     grid-row-end: span 6;
 }
 
-/* Chemin Final Rouge */
-#Chemin_Rouge_1{
+/* Chemin Final rouge */
+#final_path_red_1{
     grid-column-start: 2;
     grid-row-start: 8;
 }
-#Chemin_Rouge_2{
+#final_path_red_2{
     grid-column-start: 3;
     grid-row-start: 8;
 }
-#Chemin_Rouge_3{
+#final_path_red_3{
     grid-column-start: 4;
     grid-row-start: 8;
 }
-#Chemin_Rouge_4{
+#final_path_red_4{
     grid-column-start: 5;
     grid-row-start: 8;
 }
-#Chemin_Rouge_5{
+#final_path_red_5{
     grid-column-start: 6;
     grid-row-start: 8;
 }
 
-/* Chemin Final Bleu */
-#Chemin_Bleu_1{
+/* Chemin Final bleu */
+#final_path_blue_1{
     grid-column-start: 8;
     grid-row-start: 2;
 }
-#Chemin_Bleu_2{
+#final_path_blue_2{
     grid-column-start: 8;
     grid-row-start: 3;
 }
-#Chemin_Bleu_3{
+#final_path_blue_3{
     grid-column-start: 8;
     grid-row-start: 4;
 }
-#Chemin_Bleu_4{
+#final_path_blue_4{
     grid-column-start: 8;
     grid-row-start: 5;
 }
-#Chemin_Bleu_5{
+#final_path_blue_5{
     grid-column-start: 8;
     grid-row-start: 6;
 }
 
-/* Chemin Final Jaune */
-#Chemin_Jaune_1{
+/* Chemin Final jaune */
+#final_path_yellow_1{
     grid-column-start: 14;
     grid-row-start: 8;
 }
-#Chemin_Jaune_2{
+#final_path_yellow_2{
     grid-column-start: 13;
     grid-row-start: 8;
 }
-#Chemin_Jaune_3{
+#final_path_yellow_3{
     grid-column-start: 12;
     grid-row-start: 8;
 }
-#Chemin_Jaune_4{
+#final_path_yellow_4{
     grid-column-start: 11;
     grid-row-start: 8;
 }
-#Chemin_Jaune_5{
+#final_path_yellow_5{
     grid-column-start: 10;
     grid-row-start: 8;
 }
 
-/* Chemin Final Vert */
-#Chemin_Vert_1{
+/* Chemin Final vert */
+#final_path_green_1{
     grid-column-start: 8;
     grid-row-start: 14;
 }
-#Chemin_Vert_2{
+#final_path_green_2{
     grid-column-start: 8;
     grid-row-start: 13;
 }
-#Chemin_Vert_3{
+#final_path_green_3{
     grid-column-start: 8;
     grid-row-start: 12;
 }
-#Chemin_Vert_4{
+#final_path_green_4{
     grid-column-start: 8;
     grid-row-start: 11;
 }
-#Chemin_Vert_5{
+#final_path_green_5{
     grid-column-start: 8;
     grid-row-start: 10;
 }
 
 /* Cases de départs */
-#Depart_Rouge{
+#start_red{
     grid-area: 7 / 2;
 }
-#Depart_Bleu{
+#start_blue{
     grid-area: 2 / 9;
 }
-#Depart_Jaune{
+#start_yellow{
     grid-area: 9 / 14;
 }
-#Depart_Vert{
+#start_green{
     grid-area: 14 / 7;
 }
 
 /* Cases finales (avant le chemin final) */
-#Case_Fin_Rouge{
+#last_case_red{
     grid-area: 8 / 1;
 }
-#Case_Fin_Bleu{
+#last_case_blue{
     grid-area: 1 / 8;
 }
-#Case_Fin_Jaune{
+#last_case_yellow{
     grid-area: 8 / 15;
 }
-#Case_Fin_Vert{
+#last_case_green{
     grid-area: 15 / 8;
 }
 
 /* Cases avec étoiles */
-#Etoile_Rouge{
+#star_red{
     grid-area: 3 / 7;
 }
-#Etoile_Bleu{
+#star_blue{
     grid-area: 7 / 13;
 }
-#Etoile_Jaune{
+#star_yellow{
     grid-area: 13 / 9;
 }
-#Etoile_Vert{
+#star_green{
     grid-area: 9 / 3;
 }
