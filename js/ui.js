@@ -57,7 +57,17 @@ function handleEnter(event) {
 	}
 }
 
+function initializeBoard() {
+	for (const player of players) {
+		for (const pawn of player.pawns) {
+			const subhome = document.querySelector(`#subhome_${player.color}_${pawn.id}`);
+			subhome.innerHTML = `<img src="images/icones_joueurs/${player.color}.png">`
+		}
+	}
+}
+
 createPlayers();
+initializeBoard();
 
 
 export { printNextTurn };

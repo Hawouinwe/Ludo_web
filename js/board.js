@@ -1,5 +1,3 @@
-
-
 function idCaseAbs(n) {
     switch (n) {
         case 0:

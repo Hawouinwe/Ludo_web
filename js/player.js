@@ -64,10 +64,10 @@ class Player {
 class Pawn {
 	constructor(id, color) {
 		this.id = id;
-        this.position = null; // Position du pion sur le plateau au départ
-        this.start = 0; // Dépend de la couleur
-        this.end = 
         this.color = color;
+        this.position = null; // Position du pion sur le plateau au départ
+        this.start = `#subhome_${color}_${id}`;
+        this.end = 0;
 
         this.endPath = false;
         this.endPosition = null;
@@ -89,12 +89,15 @@ class Pawn {
     enterFinalZone() {}
 
 
-
-
     move(steps) {
+        if (!this.endPath) {
+
+        } else {
+
+        }
         // Distinction de cas : this.end_path
 
-            // Gères les déplacements sur le chemin principal (pas chhemins finaux)
+            // Gères les déplacements sur le chemin principal (pas chemins finaux)
 
             // Lorsqu'on passe (strictement) la case this.end : entrée sur le chemin final, this.end_position = 0, this.position = null
 
@@ -109,7 +112,7 @@ class Pawn {
     }
 
     goHome() {
-        // Dépend de la couleur
+        element = this.position
         this.position = null; // Exemple de position "maison"
         // Appelle une fonction pour retirer le pion graphiquement
     }
