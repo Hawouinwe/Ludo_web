@@ -4,14 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Jeu du Ludo</title>
+	<link href="https://fonts.googleapis.com/css?family=Luckiest Guy" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<script type="module" src="js/ui.js"></script>
+	<script type="module" src="js/player.js"></script>
 	<script type="module" src="js/utils.js"></script>
 	<script type="module" src="js/dice.js"></script>
 	<script type="module" src="js/board.js"></script>
-	<script type="module" src="js/player.js"></script>
-	<script type="module" src="js/ui.js"></script>
 	<script type="module" src="js/game.js"></script>
 
 	<header>
@@ -21,186 +22,176 @@
 
 
 
-	<section>
-		<!-- Section du Plateau de jeu -->
-		
-		<div class="board">
+	<!-- Section du Plateau de jeu -->
+	<section class="board">
+		<!-- Centre -->
+		<div id="center"> </div>
 
-			<!-- Centre -->
-			<div id="center"> </div>
-
-			<!-- Maisons des chevaux -->
-			<div class="home red" id="home_red"> 
-                <div class="subhome red" id="subhome_red_0"> </div>
-                <div class="subhome red" id="subhome_red_1"> </div>
-                <div class="subhome red" id="subhome_red_2"> </div>
-                <div class="subhome red" id="subhome_red_3"> </div>
-            </div>
-			<div class="home blue"  id="home_blue">
-                <div class="subhome blue" id="subhome_blue_0"> </div>
-                <div class="subhome blue" id="subhome_blue_1"> </div>
-                <div class="subhome blue" id="subhome_blue_2"> </div>
-                <div class="subhome blue" id="subhome_blue_3"> </div>
-            </div>
-			<div class="home yellow" id="home_yellow">
-                <div class="subhome yellow" id="subhome_yellow_0"> </div>
-                <div class="subhome yellow" id="subhome_yellow_1"> </div>
-                <div class="subhome yellow" id="subhome_yellow_2"> </div>
-                <div class="subhome yellow" id="subhome_yellow_3"> </div>
-            </div>
-			<div class="home green"  id="home_green">
-                <div class="subhome green" id="subhome_green_0"> </div>
-                <div class="subhome green" id="subhome_green_1"> </div>
-                <div class="subhome green" id="subhome_green_2"> </div>
-                <div class="subhome green" id="subhome_green_3"> </div>
-            </div>
-
-			<!-- Chemins finaux -->
-			<!-- Rouge -->
-			<div class="final_path red" id="final_path_red_1"> </div>
-			<div class="final_path red" id="final_path_red_2"> </div>
-			<div class="final_path red" id="final_path_red_3"> </div>
-			<div class="final_path red" id="final_path_red_4"> </div>
-			<div class="final_path red" id="final_path_red_5"> </div>
-
-			<!-- Bleu -->
-			<div class="final_path blue" id="final_path_blue_1"> </div>
-			<div class="final_path blue" id="final_path_blue_2"> </div>
-			<div class="final_path blue" id="final_path_blue_3"> </div>
-			<div class="final_path blue" id="final_path_blue_4"> </div>
-			<div class="final_path blue" id="final_path_blue_5"> </div>
-
-			<!-- Jaune -->
-			<div class="final_path yellow" id="final_path_yellow_2"> </div>
-			<div class="final_path yellow" id="final_path_yellow_1"> </div>
-			<div class="final_path yellow" id="final_path_yellow_3"> </div>
-			<div class="final_path yellow" id="final_path_yellow_4"> </div>
-			<div class="final_path yellow" id="final_path_yellow_5"> </div>
-
-			<!-- Vert -->
-			<div class="final_path green" id="final_path_green_1"> </div>
-			<div class="final_path green" id="final_path_green_2"> </div>
-			<div class="final_path green" id="final_path_green_3"> </div>
-			<div class="final_path green" id="final_path_green_4"> </div>
-			<div class="final_path green" id="final_path_green_5"> </div>
-
-
-			<!-- Départs -->
-			<div class="start red" id="start_red"> ° </div>
-			<div class="start blue"  id="start_blue"> ° </div>
-			<div class="start yellow" id="start_yellow"> ° </div>
-			<div class="start green"  id="start_green"> ° </div>
-
-			<!-- Cases finales (avant le chemin final) -->
-			<div class="last_case isred" id="last_case_red"> > </div>
-			<div class="last_case isblue"  id="last_case_blue"> > </div>
-			<div class="last_case isyellow" id="last_case_yellow"> > </div>
-			<div class="last_case isgreen"  id="last_case_green"> > </div>
-
-			<!-- Cases avec étoile -->
-			<div class="path star isred" id="star_red"> * </div>
-			<div class="path star isblue"  id="star_blue"> * </div>
-			<div class="path star isyellow" id="star_yellow"> * </div>
-			<div class="path star isgreen"  id="star_green"> * </div>
-
-
-			<!-- Reste du chemin -->
-
-			<!-- Entre rouge et bleu -->
-			<div class="path" id="path_1"> </div>
-			<div class="path" id="path_2"> </div>
-			<div class="path" id="path_3"> </div>
-			<div class="path" id="path_4"> </div>
-			<div class="path" id="path_5"> </div>
-			<div class="path" id="path_6"> </div>
-			<div class="path" id="path_7"> </div>
-			<div class="path" id="path_8"> </div>
-			<div class="path" id="path_9"> </div>
-			<div class="path" id="path_10"> </div>
-
-			<!-- Entre bleu et jaune -->
-			<div class="path" id="path_11"> </div>
-			<div class="path" id="path_12"> </div>
-			<div class="path" id="path_13"> </div>
-			<div class="path" id="path_14"> </div>
-			<div class="path" id="path_15"> </div>
-			<div class="path" id="path_16"> </div>
-			<div class="path" id="path_17"> </div>
-			<div class="path" id="path_18"> </div>
-			<div class="path" id="path_19"> </div>
-			<div class="path" id="path_20"> </div>
-
-			<!-- Entre jaune et vert -->
-			<div class="path" id="path_21"> </div>
-			<div class="path" id="path_22"> </div>
-			<div class="path" id="path_23"> </div>
-			<div class="path" id="path_24"> </div>
-			<div class="path" id="path_25"> </div>
-			<div class="path" id="path_26"> </div>
-			<div class="path" id="path_27"> </div>
-			<div class="path" id="path_28"> </div>
-			<div class="path" id="path_29"> </div>
-			<div class="path" id="path_30"> </div>
-
-			<!-- Entre vert et rouge -->
-			<div class="path" id="path_31"> </div>
-			<div class="path" id="path_32"> </div>
-			<div class="path" id="path_33"> </div>
-			<div class="path" id="path_34"> </div>
-			<div class="path" id="path_35"> </div>
-			<div class="path" id="path_36"> </div>
-			<div class="path" id="path_37"> </div>
-			<div class="path" id="path_38"> </div>
-			<div class="path" id="path_39"> </div>
-			<div class="path" id="path_40"> </div>
-
+		<!-- Maisons des chevaux -->
+		<div class="home red" id="home_red"> 
+			<div class="subhome red" id="subhome_red_0"> </div>
+			<div class="subhome red" id="subhome_red_1"> </div>
+			<div class="subhome red" id="subhome_red_2"> </div>
+			<div class="subhome red" id="subhome_red_3"> </div>
 		</div>
+		<div class="home blue"  id="home_blue">
+			<div class="subhome blue" id="subhome_blue_0"> </div>
+			<div class="subhome blue" id="subhome_blue_1"> </div>
+			<div class="subhome blue" id="subhome_blue_2"> </div>
+			<div class="subhome blue" id="subhome_blue_3"> </div>
+		</div>
+		<div class="home yellow" id="home_yellow">
+			<div class="subhome yellow" id="subhome_yellow_0"> </div>
+			<div class="subhome yellow" id="subhome_yellow_1"> </div>
+			<div class="subhome yellow" id="subhome_yellow_2"> </div>
+			<div class="subhome yellow" id="subhome_yellow_3"> </div>
+		</div>
+		<div class="home green"  id="home_green">
+			<div class="subhome green" id="subhome_green_0"> </div>
+			<div class="subhome green" id="subhome_green_1"> </div>
+			<div class="subhome green" id="subhome_green_2"> </div>
+			<div class="subhome green" id="subhome_green_3"> </div>
+		</div>
+
+		<!-- Chemins finaux -->
+		<!-- Rouge -->
+		<div class="final_path red" id="final_path_red_1"> </div>
+		<div class="final_path red" id="final_path_red_2"> </div>
+		<div class="final_path red" id="final_path_red_3"> </div>
+		<div class="final_path red" id="final_path_red_4"> </div>
+		<div class="final_path red" id="final_path_red_5"> </div>
+
+		<!-- Bleu -->
+		<div class="final_path blue" id="final_path_blue_1"> </div>
+		<div class="final_path blue" id="final_path_blue_2"> </div>
+		<div class="final_path blue" id="final_path_blue_3"> </div>
+		<div class="final_path blue" id="final_path_blue_4"> </div>
+		<div class="final_path blue" id="final_path_blue_5"> </div>
+
+		<!-- Jaune -->
+		<div class="final_path yellow" id="final_path_yellow_2"> </div>
+		<div class="final_path yellow" id="final_path_yellow_1"> </div>
+		<div class="final_path yellow" id="final_path_yellow_3"> </div>
+		<div class="final_path yellow" id="final_path_yellow_4"> </div>
+		<div class="final_path yellow" id="final_path_yellow_5"> </div>
+
+		<!-- Vert -->
+		<div class="final_path green" id="final_path_green_1"> </div>
+		<div class="final_path green" id="final_path_green_2"> </div>
+		<div class="final_path green" id="final_path_green_3"> </div>
+		<div class="final_path green" id="final_path_green_4"> </div>
+		<div class="final_path green" id="final_path_green_5"> </div>
+
+
+		<!-- Départs -->
+		<div class="start red" id="start_red"> ° </div>
+		<div class="start blue"  id="start_blue"> ° </div>
+		<div class="start yellow" id="start_yellow"> ° </div>
+		<div class="start green"  id="start_green"> ° </div>
+
+		<!-- Cases finales (avant le chemin final) -->
+		<div class="last_case isred" id="last_case_red"> > </div>
+		<div class="last_case isblue"  id="last_case_blue"> > </div>
+		<div class="last_case isyellow" id="last_case_yellow"> > </div>
+		<div class="last_case isgreen"  id="last_case_green"> > </div>
+
+		<!-- Cases avec étoile -->
+		<div class="path star isred" id="star_red"> * </div>
+		<div class="path star isblue"  id="star_blue"> * </div>
+		<div class="path star isyellow" id="star_yellow"> * </div>
+		<div class="path star isgreen"  id="star_green"> * </div>
+
+
+		<!-- Reste du chemin -->
+
+		<!-- Entre rouge et bleu -->
+		<div class="path" id="path_1"> </div>
+		<div class="path" id="path_2"> </div>
+		<div class="path" id="path_3"> </div>
+		<div class="path" id="path_4"> </div>
+		<div class="path" id="path_5"> </div>
+		<div class="path" id="path_6"> </div>
+		<div class="path" id="path_7"> </div>
+		<div class="path" id="path_8"> </div>
+		<div class="path" id="path_9"> </div>
+		<div class="path" id="path_10"> </div>
+
+		<!-- Entre bleu et jaune -->
+		<div class="path" id="path_11"> </div>
+		<div class="path" id="path_12"> </div>
+		<div class="path" id="path_13"> </div>
+		<div class="path" id="path_14"> </div>
+		<div class="path" id="path_15"> </div>
+		<div class="path" id="path_16"> </div>
+		<div class="path" id="path_17"> </div>
+		<div class="path" id="path_18"> </div>
+		<div class="path" id="path_19"> </div>
+		<div class="path" id="path_20"> </div>
+
+		<!-- Entre jaune et vert -->
+		<div class="path" id="path_21"> </div>
+		<div class="path" id="path_22"> </div>
+		<div class="path" id="path_23"> </div>
+		<div class="path" id="path_24"> </div>
+		<div class="path" id="path_25"> </div>
+		<div class="path" id="path_26"> </div>
+		<div class="path" id="path_27"> </div>
+		<div class="path" id="path_28"> </div>
+		<div class="path" id="path_29"> </div>
+		<div class="path" id="path_30"> </div>
+
+		<!-- Entre vert et rouge -->
+		<div class="path" id="path_31"> </div>
+		<div class="path" id="path_32"> </div>
+		<div class="path" id="path_33"> </div>
+		<div class="path" id="path_34"> </div>
+		<div class="path" id="path_35"> </div>
+		<div class="path" id="path_36"> </div>
+		<div class="path" id="path_37"> </div>
+		<div class="path" id="path_38"> </div>
+		<div class="path" id="path_39"> </div>
+		<div class="path" id="path_40"> </div>
 	</section>
 
-	<section>
+	<!-- Section du dé -->
+	<section id="dice" class="dice">
+		<div id="dice-side-one" class="side-one">
+			<div class="dot one-1"></div>
+		</div>
+
+		<div id="dice-side-two" class="side-two">
+			<div class="dot two-1"></div>
+			<div class="dot two-2"></div>
+		</div>
+
+		<div id="dice-side-three" class="side-tree">
+			<div class="dot three-1"></div>
+			<div class="dot three-2"></div>
+			<div class="dot three-3"></div>
+		</div>
 		
-		<!-- Section du dé -->
-		<div class="container">
-			<div id="dice" class="dice">
-				<div id="dice-side-one" class="side-one">
-					<div class="dot one-1"></div>
-				</div>
+		<div id="dice-side-four" class="side-four">
+			<div class="dot four-1"></div>
+			<div class="dot four-2"></div>
+			<div class="dot four-3"></div>
+			<div class="dot four-4"></div>
+		</div>
 
-				<div id="dice-side-two" class="side-two">
-					<div class="dot two-1"></div>
-					<div class="dot two-2"></div>
-				</div>
-
-				<div id="dice-side-three" class="side-tree">
-					<div class="dot three-1"></div>
-					<div class="dot three-2"></div>
-					<div class="dot three-3"></div>
-				</div>
-				
-				<div id="dice-side-four" class="side-four">
-					<div class="dot four-1"></div>
-					<div class="dot four-2"></div>
-					<div class="dot four-3"></div>
-					<div class="dot four-4"></div>
-				</div>
-
-				<div id="dice-side-five" class="side-four">
-					<div class="dot five-1"></div>
-					<div class="dot five-2"></div>
-					<div class="dot five-3"></div>
-					<div class="dot five-4"></div>
-					<div class="dot five-5"></div>
-				</div>
-				
-				<div id="dice-side-six" class="side-four">
-					<div class="dot six-1"></div>
-					<div class="dot six-2"></div>
-					<div class="dot six-3"></div>
-					<div class="dot six-4"></div>
-					<div class="dot six-5"></div>
-					<div class="dot six-6"></div>
-					
-			</div>
+		<div id="dice-side-five" class="side-four">
+			<div class="dot five-1"></div>
+			<div class="dot five-2"></div>
+			<div class="dot five-3"></div>
+			<div class="dot five-4"></div>
+			<div class="dot five-5"></div>
+		</div>
+		
+		<div id="dice-side-six" class="side-four">
+			<div class="dot six-1"></div>
+			<div class="dot six-2"></div>
+			<div class="dot six-3"></div>
+			<div class="dot six-4"></div>
+			<div class="dot six-5"></div>
+			<div class="dot six-6"></div>
 		</div>
 
 		<div id="roll" class="roll-button">

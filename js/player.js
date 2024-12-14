@@ -27,8 +27,8 @@
 // - `checkIfWinner(playerId)` : Vérifie si un joueur a gagné (par exemple, s'il a toutes ses pièces arrivées à la fin).
 // - `endGame()` : Fin du jeu, quand un joueur a gagné.
 
+import { printNextTurn } from "./ui.js";
 
-// Player.js
 class Player {
 	constructor(id, name, color) {
 		this.id = id;
@@ -50,7 +50,8 @@ class Player {
     }
 
     endTurn() {
-        // Logique pour terminer le tour du joueur
+        printNextTurn(this.id);
+        return;
     }
 }
 
@@ -149,3 +150,5 @@ class Dice {
     return this.result;
   }
 }
+
+export { Player, Pawn }
