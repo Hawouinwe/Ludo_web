@@ -43,6 +43,7 @@ class Player {
     	const steps = this.dice.roll();
         pawn.move(steps); // Déplace le pion
     }
+    // Pour jouer le cheval 2 :  Joueur.move(2)
 
     hasWon() {
         // Vérifie si tous les pions ont atteint l'objectif
@@ -68,6 +69,8 @@ class Pawn {
         this.position = null; // Position du pion sur le plateau au départ
         this.start = `#subhome_${color}_${id}`;
         this.end = 0;
+
+        this.hasWon = false ; // Si le pion a atteint l'arrivée devient true
 
         this.endPath = false;
         this.endPosition = null;

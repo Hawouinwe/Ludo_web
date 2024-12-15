@@ -1,4 +1,19 @@
-function idCaseAbs(n) {
+function idrel_to_idabs(nrel, color) { // case relative à une coul -> case absolue
+    switch(coul) {
+        case "red" :
+            return nrel + 45 % 60
+        case "blue" :
+            return nrel % 60
+        case "yellow" :
+            return nrel + 15 % 60
+        case "green" :
+            return nrel + 30 % 60
+    }
+} 
+
+
+function idCaseAbs(nrel, coul) {
+    let n = idrel_to_idabs(nrel, coul)
     switch (n) {
         case 0:
             return "last_case_blue" ;
@@ -247,6 +262,11 @@ function idHome(coul, n) {
 // for(let i = 0 ; i < 4 ; i++) {
 //     document.getElementById(idHome("blue",i)).innerText = `${i}` ;
 // }
+
+
+
+
+
 
 function idCenter() {
     return "center" ;
