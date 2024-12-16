@@ -48,6 +48,7 @@ function printNextTurn(actualPlayer = -1) {
 		nextPlayer = players[(actualPlayer + 1) % numPlayers];
 	}
 	alert(`${nextPlayer.name}, c'est ton tour!`);
+	return nextPlayer;
 }
 
 
@@ -61,13 +62,24 @@ function initializeBoard() {
 	for (const player of players) {
 		for (const pawn of player.pawns) {
 			const subhome = document.querySelector(`#subhome_${player.color}_${pawn.id}`);
-			subhome.innerHTML = `<img src="images/icones_joueurs/${player.color}.png">`
+			subhome.innerHTML = `<img id="${player.id}_${pawn.id}" src="images/icones_joueurs/${player.color}.png">`
 		}
 	}
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 createPlayers();
 initializeBoard();
-
+players[0].exitStartZone(0);
+players[0].move(0);
+players[1].exitStartZone(0);
+players[1].move(0);
+players[2].exitStartZone(0);
+players[2].move(0);
+players[3].exitStartZone(0);
+players[3].move(0);
 
 export { printNextTurn };

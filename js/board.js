@@ -1,19 +1,19 @@
-function idrel_to_idabs(nrel, color) { // case relative à une coul -> case absolue
-    switch(coul) {
+function relativeIdToAbsoluteId(nrel, color) { // case relative à une color -> case absolue
+    switch(color) {
         case "red" :
-            return nrel + 45 % 60
+            return nrel + 40 % 52
         case "blue" :
-            return nrel % 60
+            return nrel + 1 % 52
         case "yellow" :
-            return nrel + 15 % 60
+            return nrel + 14 % 52
         case "green" :
-            return nrel + 30 % 60
+            return nrel + 27 % 52
     }
 } 
 
 
-function idCaseAbs(nrel, coul) {
-    let n = idrel_to_idabs(nrel, coul)
+function idCaseAbs(nrel, color) {
+    let n = relativeIdToAbsoluteId(nrel, color)
     switch (n) {
         case 0:
             return "last_case_blue" ;
@@ -124,8 +124,8 @@ function idCaseAbs(nrel, coul) {
     }
 }
 
-function idFinalPath(coul, n) {
-    switch (coul) {
+function idFinalPath(color, n) {
+    switch (color) {
         case "red" :
             switch (n) {
                 case 0 :
@@ -191,13 +191,13 @@ function idFinalPath(coul, n) {
             }
         
         default:
-            console.log("Mauvaise couleur !");
+            console.log("Mauvaise coloreur !");
     }
 }
 
 
-function idHome(coul, n) {
-    switch (coul) {
+function idHome(color, n) {
+    switch (color) {
         case "red" :
             switch (n) {
                 case 0 :
@@ -255,7 +255,7 @@ function idHome(coul, n) {
             }
         
         default:
-            console.log("Mauvaise couleur !");
+            console.log("Mauvaise coloreur !");
     }
 }
 
@@ -271,3 +271,5 @@ function idHome(coul, n) {
 function idCenter() {
     return "center" ;
 }
+
+export { idCaseAbs };

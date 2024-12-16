@@ -28,96 +28,116 @@
 // - `endGame()` : Fin du jeu, quand un joueur a gagné.
 
 import { printNextTurn } from "./ui.js";
+import { idCaseAbs } from "./board.js";
 
 class Player {
 	constructor(id, name, color) {
 		this.id = id;
 		this.name = name;
 		this.color = color
-		this.pawns = [new Pawn(0,this.color), new Pawn(1,this.color), new Pawn(2,this.color), new Pawn(3,this.color)];
+		this.pawns = [new Pawn(0,this.color, this.id), new Pawn(1,this.color, this.id), new Pawn(2,this.color, this.id), new Pawn(3,this.color, this.id)];
         this.dice = new Dice();
     }
 
-    move(pawn) {
-        // Déplace le pion donné en fonction du résultat du dé
-    	const steps = this.dice.roll();
-        pawn.move(steps); // Déplace le pion
-    }
-    // Pour jouer le cheval 2 :  Joueur.move(2)
-
     hasWon() {
         // Vérifie si tous les pions ont atteint l'objectif
-    	return this.pawns.every(pawn => pawn.hasFinished());
+        return this.pawns.every(pawn => pawn.hasFinished);
     }
 
     endTurn() {
         printNextTurn(this.id);
         return;
     }
+
+    // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
+    move(pawnId) {
+        // Déplace le pion donné en fonction du résultat du dé
+    	const steps = this.dice.roll();
+        this.pawns[pawnId].move(steps);
+    }
+    // Pour jouer le cheval 2 :  Joueur.move(2)
+
+    exitStartZone(pawnId) {
+        this.pawns[pawnId].exitStartZone();
+    }
+
+    enterStartZone(pawnId) {
+        this.pawns[pawnId].enterStartZone();
+    }
+
+    enterFinalZone(pawnId) {
+        this.pawns[pawnId].enterFinalZone();
+    }
 }
-
-
-
-// Fonction qui associe des positions relatives aux couleurs des pions
-
 
 // Pawn.js
 class Pawn {
-	constructor(id, color) {
+	constructor(id, color, playerId) {
 		this.id = id;
         this.color = color;
-        this.position = null; // Position du pion sur le plateau au départ
+        this.playerId = playerId;
         this.start = `#subhome_${color}_${id}`;
-        this.end = 0;
+        this.position = 0; // Si le pion a fini ca vaut null, s'il est dans le home (ou la startzone si tu preferes) alors 0, cette position ne prend pas en compte le chemin final
+        this.htmlIcon = `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png">`;
 
-        this.hasWon = false ; // Si le pion a atteint l'arrivée devient true
+        this.endPath = false; // Si le pion est entré dans le chemin final alors true, sinon false
+        this.endPosition = null; // Si endPath est à true, alors c'est la position sur le chemin final 
 
-        this.endPath = false;
-        this.endPosition = null;
-
-
-        // position = 0 <=> position départ bleu
-        // (il y a 56-24 cases !)
-    }
-
-    canMove() {
-    	return this.hasFinished() === false;
+        this.hasFinished = false; // Permet de savoir si un pion a atteint l'arrivée
     }
 
 
-    exitStartZone() {}
+    exitStartZone() {
+        const subhome = document.querySelector(this.start);
+        const start_case = document.querySelector(`#start_${this.color}`);
+        subhome.innerHTML = "";
+        start_case.innerHTML = this.htmlIcon;
+        this.position = 1;
+        return;
+    }
 
-    enterStartZone() {}
+    enterStartZone() {
+        const actual_position = document.getElementById(`${this.playerId}_${this.id}`);
+        const subhome = document.querySelector(this.start);
+        if (actual_position.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
+            actual_position.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
+        } else {
+            actual_position.parentElement.innerHTML = "";
+        }
+        subhome.innerHTML = this.htmlIcon;
+        this.position = 0;
+    }
 
-    enterFinalZone() {}
+    enterFinalZone() {
+        this.endPath = true;
+        this.endPosition = 0;
+        // Le reste est à gérer mais je le ferais plus tard.
+    }
 
 
     move(steps) {
-        if (!this.endPath) {
-
+        if (this.position === 0) { // Le pion ne peut pas bouger s'il n'est pas sortie de sa maison
+            return;
         } else {
+            const actual_position = document.getElementById(`${this.playerId}_${this.id}`);
+            if (!this.endPath) { // Si le pion n'est pas dans le chemin final
+                this.position += steps;
+                console.log("prochaine position index: " + this.position);
+                const idNextPosition = idCaseAbs(this.position, this.color);
+                console.log("valeur absolue de l'index: " + idNextPosition);
 
+                if (actual_position.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
+                    actual_position.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
+                } else {
+                    actual_position.parentElement.innerHTML = "";
+                }
+
+                const caseNextPosition = document.getElementById(idNextPosition);
+                caseNextPosition.innerHTML = this.htmlIcon;
+            } else {
+
+            }
         }
-        // Distinction de cas : this.end_path
-
-            // Gères les déplacements sur le chemin principal (pas chemins finaux)
-
-            // Lorsqu'on passe (strictement) la case this.end : entrée sur le chemin final, this.end_position = 0, this.position = null
-
-            // --> Vérifier qu'il n'y a pas déjà un pion avec le board.js de la position et couleur du pion
-    	   this.position += steps;
-            // Vérifie les règles de déplacement selon le jeu
-
-        // else
-
-           // Tester si steps <= n (nb avant victoire) -> gérer le cas de victoire (case centrale n'est pas une case de déplacement ?) + appel fonction graphique
-            this.end_position += steps
-    }
-
-    goHome() {
-        element = this.position
-        this.position = null; // Exemple de position "maison"
-        // Appelle une fonction pour retirer le pion graphiquement
     }
 
     isAtHome() {
@@ -125,13 +145,7 @@ class Pawn {
     }
 
     isSafe() {
-
     	// le pion est sur une étoile est ne peut pas etre mangé
-    }
-
-    hasFinished() {
-    	return this.position === 56;
-    	// le pion ne peut plus bouger car il est arrivé au bout
     }
 }
 
@@ -144,7 +158,8 @@ class Dice {
 
   roll() {
     this.result = Math.floor(Math.random() * 6) + 1;
-    this.animateRoll();
+    // this.animateRoll();
+    console.log("Résulat du dé: " + this.result);
     return this.result;
   }
 
@@ -157,4 +172,5 @@ class Dice {
   }
 }
 
-export { Player, Pawn }
+
+export { Player, Pawn };
