@@ -28,7 +28,7 @@
 // - `endGame()` : Fin du jeu, quand un joueur a gagné.
 
 import { printNextTurn } from "./ui.js";
-import { idCaseAbs } from "./board.js";
+import { idCaseAbs, idFinalPath } from "./board.js";
 
 class Player {
 	constructor(id, name, color) {
@@ -52,7 +52,8 @@ class Player {
     // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
     move(pawnId) {
         // Déplace le pion donné en fonction du résultat du dé
-    	const steps = this.dice.roll();
+    	// const steps = this.dice.roll();
+        const steps = 1;
         this.pawns[pawnId].move(steps);
     }
     // Pour jouer le cheval 2 :  Joueur.move(2)
@@ -68,6 +69,14 @@ class Player {
     enterFinalZone(pawnId) {
         this.pawns[pawnId].enterFinalZone();
     }
+
+    isAtHome(pawnId) {
+        this.pawns[pawnId].isAtHome();
+    }
+
+    // isSafe(pawnId, position) {
+    // 	// le pion est sur une étoile est ne peut pas etre mangé
+    // }
 }
 
 // Pawn.js
@@ -77,7 +86,7 @@ class Pawn {
         this.color = color;
         this.playerId = playerId;
         this.start = `#subhome_${color}_${id}`;
-        this.position = 0; // Si le pion a fini ca vaut null, s'il est dans le home (ou la startzone si tu preferes) alors 0, cette position ne prend pas en compte le chemin final
+        this.position = 0; // Si le pion a fini ou est dans le chemin final ca vaut null, s'il est dans le home (ou la startzone si tu preferes) alors 0, cette position ne prend pas en compte le chemin final
         this.htmlIcon = `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png">`;
 
         this.endPath = false; // Si le pion est entré dans le chemin final alors true, sinon false
@@ -97,12 +106,12 @@ class Pawn {
     }
 
     enterStartZone() {
-        const actual_position = document.getElementById(`${this.playerId}_${this.id}`);
+        const actualPosition = document.getElementById(`${this.playerId}_${this.id}`);
         const subhome = document.querySelector(this.start);
-        if (actual_position.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
-            actual_position.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
+        if (actualPosition.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
+            actualPosition.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
         } else {
-            actual_position.parentElement.innerHTML = "";
+            actualPosition.parentElement.innerHTML = "";
         }
         subhome.innerHTML = this.htmlIcon;
         this.position = 0;
@@ -111,42 +120,64 @@ class Pawn {
     enterFinalZone() {
         this.endPath = true;
         this.endPosition = 0;
+        // this.position = null;
         // Le reste est à gérer mais je le ferais plus tard.
     }
 
+    updateBoard(newPosition) {
+        const actualPosition = document.getElementById(`${this.playerId}_${this.id}`); // Permet de selectionner le pion
 
+        // Enlever l'icône du pion de la case actuelle, gérer l'étoile si présente
+        if (actualPosition.parentElement.id.includes("star_")) {
+            actualPosition.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
+        } else {
+            actualPosition.parentElement.innerHTML = "";
+        }
+    
+        // Ajouter l'icône du pion à la nouvelle position
+        const caseNextPosition = document.getElementById(newPosition);
+        caseNextPosition.innerHTML = this.htmlIcon;
+    }
+    
     move(steps) {
         if (this.position === 0) { // Le pion ne peut pas bouger s'il n'est pas sortie de sa maison
+            console.log("Tu ne peux pas bouger un pion qui n'est pas sortit de sa maison !");
             return;
-        } else {
-            const actual_position = document.getElementById(`${this.playerId}_${this.id}`);
-            if (!this.endPath) { // Si le pion n'est pas dans le chemin final
-                this.position += steps;
-                console.log("prochaine position index: " + this.position);
-                const idNextPosition = idCaseAbs(this.position, this.color);
-                console.log("valeur absolue de l'index: " + idNextPosition);
+        }
+        
+        
+        if (!this.endPath) { // Si le pion n'est pas dans le chemin final
+            this.position += steps;
 
-                if (actual_position.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
-                    actual_position.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
-                } else {
-                    actual_position.parentElement.innerHTML = "";
-                }
-
-                const caseNextPosition = document.getElementById(idNextPosition);
-                caseNextPosition.innerHTML = this.htmlIcon;
-            } else {
-
+            if (this.position > 51) {
+                this.enterFinalZone();
+                this.move(this.position - 51); // On réessaie après avoir entré la zone finale
+                return
             }
+
+            const idNextPosition = idCaseAbs(this.position, this.color);
+
+            // Mise à jour de la planche avec le nouveau pion
+            this.updateBoard(idNextPosition);
+        } else {
+            this.moveInFinalPath(steps);
         }
     }
+    
+    moveInFinalPath(steps) {
+        this.endPosition += steps;
+        let idCaseFinalPath = idFinalPath(this.color, this.endPosition);
+        this.updateBoard(idCaseFinalPath);
+    }
+    
 
     isAtHome() {
         return this.position === 0; // Exemple de la condition pour être à la maison
     }
 
-    isSafe() {
-    	// le pion est sur une étoile est ne peut pas etre mangé
-    }
+    // isSafe() {
+    // 	// le pion est sur une étoile et les cases de départ (position 1) et ne peut pas etre mangé
+    // }
 }
 
 

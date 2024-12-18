@@ -4,7 +4,7 @@
 
 // afficher la fin du jeu (donc le gagnant)
 
-import { Player, Pawn } from "./player.js";
+import { Player } from "./player.js";
 
 document.addEventListener('keydown', handleEnter);
 let players = [];
@@ -17,7 +17,7 @@ function createPlayers() {
 		createPlayer(name);
 	}
 
-	players.forEach((player, index) => {
+	players.forEach((player) => {
 		console.log(player)
 		const home = document.querySelector(`#home_${player.color}`);
 		home.innerHTML = home.innerHTML + "<p style='font-weight:bold;'>" + player.name + "</p>";
@@ -73,13 +73,7 @@ function sleep(ms) {
 
 createPlayers();
 initializeBoard();
-players[0].exitStartZone(0);
-players[0].move(0);
-players[1].exitStartZone(0);
-players[1].move(0);
-players[2].exitStartZone(0);
-players[2].move(0);
-players[3].exitStartZone(0);
-players[3].move(0);
+
 
 export { printNextTurn };
+export default players;
