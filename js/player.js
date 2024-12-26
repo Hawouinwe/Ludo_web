@@ -50,13 +50,17 @@ class Player {
     }
 
     // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
-    move(pawnId) {
+    move(pawnId, steps) {
         // Déplace le pion donné en fonction du résultat du dé
     	// const steps = this.dice.roll();
-        const steps = 1;
-        this.pawns[pawnId].move(steps);
+        // const steps = 1;
+        if (steps <= 6) {
+            this.pawns[pawnId].move(steps);
+        } else {
+            console.log("La variable 'steps' ne peut pas être supérieur à 6 !");
+        }
     }
-    // Pour jouer le cheval 2 :  Joueur.move(2)
+    // Pour jouer le cheval 2 :  Joueur.move(2, 6)
 
     exitStartZone(pawnId) {
         this.pawns[pawnId].exitStartZone();

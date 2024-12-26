@@ -112,10 +112,5 @@ document.getElementById('alertButton').addEventListener('click', closeAlert);
 createPlayers();
 initializeBoard();
 
-
-setTimeout(() => {
-			showCustomAlert("Test", "Ca marche !!")
-    }, 2000);
-
 export { printNextTurn, showCustomAlert, closeAlert };
 export default players;
