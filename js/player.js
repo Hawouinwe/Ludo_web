@@ -31,11 +31,11 @@ import { printNextTurn } from "./ui.js";
 import { idCaseAbs, idFinalPath } from "./board.js";
 
 class Player {
-	constructor(id, name, color) {
-		this.id = id;
-		this.name = name;
-		this.color = color
-		this.pawns = [new Pawn(0,this.color, this.id), new Pawn(1,this.color, this.id), new Pawn(2,this.color, this.id), new Pawn(3,this.color, this.id)];
+    constructor(id, name, color) {
+        this.id = id;
+        this.name = name;
+        this.color = color
+        this.pawns = [new Pawn(0,this.color, this.id), new Pawn(1,this.color, this.id), new Pawn(2,this.color, this.id), new Pawn(3,this.color, this.id)];
         this.dice = new Dice();
     }
 
@@ -52,7 +52,7 @@ class Player {
     // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
     move(pawnId, steps) {
         // Déplace le pion donné en fonction du résultat du dé
-    	// const steps = this.dice.roll();
+        // const steps = this.dice.roll();
         // const steps = 1;
         if (steps <= 6) {
             this.pawns[pawnId].move(steps);
@@ -79,14 +79,14 @@ class Player {
     }
 
     // isSafe(pawnId, position) {
-    // 	// le pion est sur une étoile est ne peut pas etre mangé
+    //  // le pion est sur une étoile est ne peut pas etre mangé
     // }
 }
 
 // Pawn.js
 class Pawn {
-	constructor(id, color, playerId) {
-		this.id = id;
+    constructor(id, color, playerId) {
+        this.id = id;
         this.color = color;
         this.playerId = playerId;
         this.start = `#subhome_${color}_${id}`;
@@ -180,7 +180,7 @@ class Pawn {
     }
 
     // isSafe() {
-    // 	// le pion est sur une étoile et les cases de départ (position 1) et ne peut pas etre mangé
+    //  // le pion est sur une étoile et les cases de départ (position 1) et ne peut pas etre mangé
     // }
 }
 
