@@ -67,13 +67,50 @@ function initializeBoard() {
 	}
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+
+// Animation fenetre d'alerte
+function showCustomAlert(title, content) {
+    const overlay = document.getElementById('alertOverlay');
+    const alertBox = overlay.querySelector('.custom-alert');
+    const titleElement = document.getElementById('alertTitle');
+    const contentElement = document.getElementById('alertContent');
+
+    // Set content
+    titleElement.textContent = title;
+    contentElement.textContent = content;
+
+    // Show overlay
+    overlay.style.display = 'block';
+
+    // Animate alert box
+    requestAnimationFrame(() => {
+        alertBox.classList.add('slide-in');
+    });
+
+    // Auto-close after 2 seconds
+    setTimeout(() => {
+        closeAlert();
+    }, 2000);
 }
+
+function closeAlert() {
+    const overlay = document.getElementById('alertOverlay');
+    const alertBox = overlay.querySelector('.custom-alert');
+
+    // Animate out
+    alertBox.classList.remove('slide-in');
+    alertBox.classList.add('slide-out');
+
+    // Hide overlay after animation
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        alertBox.classList.remove('slide-out');
+    }, 1000);
+}
+document.getElementById('alertButton').addEventListener('click', closeAlert);
 
 createPlayers();
 initializeBoard();
 
-
-export { printNextTurn };
+export { printNextTurn, showCustomAlert, closeAlert };
 export default players;
