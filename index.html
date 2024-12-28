@@ -6,6 +6,7 @@
 	<title>Jeu du Ludo</title>
 	<link href="https://fonts.googleapis.com/css?family=Luckiest Guy" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style_dice.css">
 </head>
 <body>
 	<script type="module" src="js/board.js"></script>
@@ -84,10 +85,10 @@
 
 
 		<!-- Départs -->
-		<div class="start red" id="start_red"> </div>
-		<div class="start blue"  id="start_blue"> </div>
-		<div class="start yellow" id="start_yellow"> </div>
-		<div class="start green"  id="start_green"> </div>
+		<div class="start red" id="start_red"> ° </div>
+		<div class="start blue"  id="start_blue"> ° </div>
+		<div class="start yellow" id="start_yellow"> ° </div>
+		<div class="start green"  id="start_green"> ° </div>
 
 		<!-- Cases finales (avant le chemin final) -->
 		<div class="last_case isred" id="last_case_red"> > </div>
@@ -153,52 +154,52 @@
 		<div class="path" id="path_40"> </div>
 	</section>
 
-	<!-- Section du dé -->
-	<section id="dice" class="dice">
-		<div id="dice-side-one" class="side-one">
-			<div class="dot one-1"></div>
+	<section class="game">
+		<div class="container">
+		  <!-- Dé -->
+		  <section id="dice" class="dice">
+			<div class="side one">
+			  <div class="dot one-1"></div>
+			</div>
+			<div class="side two">
+			  <div class="dot two-1"></div>
+			  <div class="dot two-2"></div>
+			</div>
+			<div class="side three">
+			  <div class="dot three-1"></div>
+			  <div class="dot three-2"></div>
+			  <div class="dot three-3"></div>
+			</div>
+			<div class="side four">
+			  <div class="dot four-1"></div>
+			  <div class="dot four-2"></div>
+			  <div class="dot four-3"></div>
+			  <div class="dot four-4"></div>
+			</div>
+			<div class="side five">
+			  <div class="dot five-1"></div>
+			  <div class="dot five-2"></div>
+			  <div class="dot five-3"></div>
+			  <div class="dot five-4"></div>
+			  <div class="dot five-5"></div>
+			</div>
+			<div class="side six">
+			  <div class="dot six-1"></div>
+			  <div class="dot six-2"></div>
+			  <div class="dot six-3"></div>
+			  <div class="dot six-4"></div>
+			  <div class="dot six-5"></div>
+			  <div class="dot six-6"></div>
+			</div>
+		  </section>
 		</div>
-
-		<div id="dice-side-two" class="side-two">
-			<div class="dot two-1"></div>
-			<div class="dot two-2"></div>
-		</div>
-
-		<div id="dice-side-three" class="side-tree">
-			<div class="dot three-1"></div>
-			<div class="dot three-2"></div>
-			<div class="dot three-3"></div>
-		</div>
-		
-		<div id="dice-side-four" class="side-four">
-			<div class="dot four-1"></div>
-			<div class="dot four-2"></div>
-			<div class="dot four-3"></div>
-			<div class="dot four-4"></div>
-		</div>
-
-		<div id="dice-side-five" class="side-four">
-			<div class="dot five-1"></div>
-			<div class="dot five-2"></div>
-			<div class="dot five-3"></div>
-			<div class="dot five-4"></div>
-			<div class="dot five-5"></div>
-		</div>
-		
-		<div id="dice-side-six" class="side-four">
-			<div class="dot six-1"></div>
-			<div class="dot six-2"></div>
-			<div class="dot six-3"></div>
-			<div class="dot six-4"></div>
-			<div class="dot six-5"></div>
-			<div class="dot six-6"></div>
-		</div>
-
+		<!-- Bouton -->
 		<div id="roll" class="roll-button">
-			<button>Roll dice</button>
+		  <button>Roll Dice!</button>
 		</div>
-	</section>
-
+	  </section>
+	  
+	  
 
 
 
@@ -208,5 +209,6 @@
 		<!-- Youssouf -->
 	</footer>
 
+	<script src="dice.js"></script>
 </body>
 </html>

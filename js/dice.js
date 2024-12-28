@@ -1,0 +1,31 @@
+class Dice {
+  constructor(diceId) {
+    this.element = document.getElementById(diceId); // Id de l'élément DOM
+    this.result = 1; // Initialiser avec une face visible par défaut
+  }
+
+  rollDice() {
+    // Générer un nombre aléatoire entre 1 et 6
+    this.result = Math.floor(Math.random() * 6) + 1;
+
+    // Supprimer toutes les classes 'show-X'
+    for (let i = 1; i <= 6; i++) {
+      this.element.classList.remove('show-' + i);
+    }
+
+    // Ajouter la classe correspondant au résultat
+    this.element.classList.add('show-' + this.result);
+
+    console.log('Résultat du dé :', this.result); // Debug
+    setTimeout(rollDice(), 2000);
+  }
+}
+
+// Initialisation
+const dice = new Dice('dice'); // Id de l'élément représentant le dé
+
+// Ajout d'un événement au bouton
+const rollButton = document.getElementById('roll');
+rollButton.onclick = function () {
+  dice.rollDice(); // Appeler la méthode de l'instance
+};
