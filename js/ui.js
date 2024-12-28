@@ -112,5 +112,4 @@ document.getElementById('alertButton').addEventListener('click', closeAlert);
 createPlayers();
 initializeBoard();
 
-export { printNextTurn, showCustomAlert, closeAlert };
-export default players;
+export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players };
