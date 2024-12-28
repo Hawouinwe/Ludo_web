@@ -277,3 +277,5 @@ function idCenter() {
 }
 
 export { idCaseAbs, idFinalPath };
+
+
