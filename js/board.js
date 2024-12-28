@@ -1,19 +1,20 @@
-function relativeIdToAbsoluteId(nrel, color) { // case relative à une color -> case absolue
-    switch(color) {
+function idrel_to_idabs(nrel, coul) { // case relative à une coul -> case absolue
+    switch(coul) {
         case "red" :
-            return (nrel + 40) % 52
+            return (nrel + 45) % 52
         case "blue" :
-            return (nrel + 1) % 52
+            return (nrel) % 52
         case "yellow" :
-            return (nrel + 14) % 52
+            return (nrel + 15) % 52
         case "green" :
-            return (nrel + 27) % 52
+            return (nrel + 30) % 52
     }
 } 
 
 
-function idCaseAbs(nrel, color) {
-    let n = relativeIdToAbsoluteId(nrel, color)
+function idCaseAbs(nrel, coul) {
+    let n = idrel_to_idabs(nrel, coul)
+    console.log(`Indice : ${n}`) ;
     switch (n) {
         case 0:
             return "last_case_blue" ;
@@ -124,23 +125,19 @@ function idCaseAbs(nrel, color) {
     }
 }
 
-function idFinalPath(color, n) {
-    if (n == 6) {
-        return "center";
-    }
-
-    switch (color) {
+function idFinalPath(coul, n) {
+    switch (coul) {
         case "red" :
             switch (n) {
-                case 1 :
+                case 0 :
                     return "final_path_red_1" ;
-                case 2 :
+                case 1 :
                     return "final_path_red_2" ;
-                case 3 :
+                case 2 :
                     return "final_path_red_3" ;
-                case 4 :
+                case 3 :
                     return "final_path_red_4" ;
-                case 5 :
+                case 4 :
                     return "final_path_red_5" ;
                 default:
                     console.log("Mauvais indice final !");
@@ -148,15 +145,15 @@ function idFinalPath(color, n) {
 
         case "blue" :
             switch (n) {
-                case 1 :
+                case 0 :
                     return "final_path_blue_1" ;
-                case 2 :
-                    return "final_path_blue_2" ;
-                case 3 :
-                    return "final_path_blue_3" ;
-                case 4 :
-                    return "final_path_blue_4" ;
                 case 1 :
+                    return "final_path_blue_2" ;
+                case 2 :
+                    return "final_path_blue_3" ;
+                case 3 :
+                    return "final_path_blue_4" ;
+                case 4 :
                     return "final_path_blue_5" ;
                 default:
                     console.log("Mauvais indice fianl !");
@@ -164,15 +161,15 @@ function idFinalPath(color, n) {
 
         case "yellow" :
             switch (n) {
-                case 1 :
+                case 0 :
                     return "final_path_yellow_1" ;
-                case 2 :
+                case 1 :
                     return "final_path_yellow_2" ;
-                case 3 :
+                case 2 :
                     return "final_path_yellow_3" ;
-                case 4 :
+                case 3 :
                     return "final_path_yellow_4" ;
-                case 5 :
+                case 4 :
                     return "final_path_yellow_5" ;
                 default:
                     console.log("Mauvais indice final !");
@@ -180,15 +177,15 @@ function idFinalPath(color, n) {
 
         case "green" :
             switch (n) {
-                case 1 :
+                case 0 :
                     return "final_path_green_1" ;
-                case 2 :
+                case 1 :
                     return "final_path_green_2" ;
-                case 3 :
+                case 2 :
                     return "final_path_green_3" ;
-                case 4 :
+                case 3 :
                     return "final_path_green_4" ;
-                case 5 :
+                case 4 :
                     return "final_path_green_5" ;
                 default:
                     console.log("Mauvais indice final !");
@@ -200,8 +197,8 @@ function idFinalPath(color, n) {
 }
 
 
-function idHome(color, n) {
-    switch (color) {
+function idHome(coul, n) {
+    switch (coul) {
         case "red" :
             switch (n) {
                 case 0 :
@@ -259,7 +256,7 @@ function idHome(color, n) {
             }
         
         default:
-            console.log("Mauvaise coloreur !");
+            console.log("Mauvaise couleur !");
     }
 }
 
@@ -276,4 +273,4 @@ function idCenter() {
     return "center" ;
 }
 
-export { idCaseAbs, idFinalPath };
+export {idCaseAbs , idFinalPath } ;
