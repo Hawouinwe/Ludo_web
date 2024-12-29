@@ -89,7 +89,7 @@ class Dice {
   
         // Fallback in case transitionend is not triggered
         setTimeout(() => {
-          console.warn("Fallback: Transitionend not triggered, resolving.");
+          // console.warn("Fallback: Transitionend not triggered, resolving.");
           this.element.removeEventListener('transitionend', onTransitionEnd);
           resolve(this.result);
         }, 1500); // Adjust timeout based on CSS transition duration

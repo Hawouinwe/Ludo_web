@@ -1,8 +1,7 @@
 
 //import { idCaseAbs } from "./board";
 import { Player, Pawn } from "./player.js"
-import { players } from "./ui.js"
-import { numPlayers } from "./ui.js"
+import { players, numPlayers, showCustomAlert, closeAlert } from "./ui.js";
 
 
 function movable(player, pawn, steps) { // Depend des règles choisies ?
@@ -32,6 +31,7 @@ async function play(player) {
         rollAgain = false ;
         
         //console.log("Avant attente") ;
+        showCustomAlert(`Joueur ${player.id}`, "À toi de jouer !")
         console.log("Lancez le dé") ;
         const dice = await player.dice.rollDice() ;
         console.log("Après attente") ;
@@ -69,9 +69,7 @@ async function play(player) {
 
             if (consecutiveSixes < 3) {
                 rollAgain = true ;
-            }
-
-            if (consecutiveSixes >= 3) {
+            } else {
                 console.log('Three consecutive sixes - forfeiting turn.');
                 rollAgain = false;
                 consecutiveSixes = 0; // Reset counter

@@ -13,7 +13,7 @@ let numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
 function createPlayers() {
 	numPlayers = Math.max(2, Math.min(4, parseInt(numPlayers))); 
 	for (let i = 0; i < numPlayers; i++) {
-		let name = prompt(`Entrez le pseudo du joueur ${i + 1} :`, `Player ${i + 1}`);
+		let name = prompt(`Entrez le pseudo du joueur ${i + 1} :`, `Joueur ${i + 1}`);
 		createPlayer(name);
 	}
 

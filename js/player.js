@@ -94,33 +94,38 @@ class Pawn {
         this.color = color;
         this.playerId = playerId;
         this.start = `#subhome_${color}_${id}`;
-        this.position = 0; // Si le pion a fini ou est dans le chemin final ca vaut null, s'il est dans le home (ou la startzone si tu preferes) alors 0, cette position ne prend pas en compte le chemin final
+        this.position = 0;
         this.htmlIcon = `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png">`;
-
-        this.endPath = false; // Si le pion est entré dans le chemin final alors true, sinon false
-        this.endPosition = null; // Si endPath est à true, alors c'est la position sur le chemin final 
-
-        this.hasFinished = false; // Permet de savoir si un pion a atteint l'arrivée
+        this.endPath = false;
+        this.endPosition = null;
+        this.hasFinished = false;
     }
 
+    get currentElement() {
+        return document.getElementById(`${this.playerId}_${this.id}`);
+    }
+
+    updateCaseContent(caseElement, newContent) {
+        if (caseElement.id.includes("star_")) {
+            const starImg = '<img src="images/star.png" alt="etoile">';
+            caseElement.innerHTML = newContent ? `${starImg}${newContent}` : starImg;
+        } else {
+            caseElement.innerHTML = newContent || "";
+        }
+    }
 
     exitStartZone() {
         const subhome = document.querySelector(this.start);
-        const start_case = document.querySelector(`#start_${this.color}`);
+        const startCase = document.querySelector(`#start_${this.color}`);
         subhome.innerHTML = "";
-        start_case.innerHTML = this.htmlIcon;
+        this.updateCaseContent(startCase, this.htmlIcon);
         this.position = 1;
-        return;
     }
 
     enterStartZone() {
-        const actualPosition = document.getElementById(`${this.playerId}_${this.id}`);
+        const currentCase = this.currentElement.parentElement;
         const subhome = document.querySelector(this.start);
-        if (actualPosition.parentElement.id.includes("star_")) { // Pour ne pas enlever l'image de l'étoile s'il y en a une
-            actualPosition.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
-        } else {
-            actualPosition.parentElement.innerHTML = "";
-        }
+        this.updateCaseContent(currentCase, this.getOtherPawnsHtml(currentCase));
         subhome.innerHTML = this.htmlIcon;
         this.position = 0;
     }
@@ -128,53 +133,83 @@ class Pawn {
     enterFinalZone() {
         this.endPath = true;
         this.endPosition = 0;
-        // this.position = null;
-        // Le reste est à gérer mais je le ferais plus tard.
+    }
+
+    getOtherPawnsHtml(caseElement) {
+        return Array.from(caseElement.getElementsByTagName('img'))
+            .filter(img => img.id !== `${this.playerId}_${this.id}` && !img.alt.includes('etoile'))
+            .map(img => img.outerHTML)
+            .join('');
     }
 
     updateBoard(newPosition) {
-        const actualPosition = document.getElementById(`${this.playerId}_${this.id}`); // Permet de selectionner le pion
+        const currentPawn = this.currentElement;
+        if (!currentPawn) return;
 
-        // Enlever l'icône du pion de la case actuelle, gérer l'étoile si présente
-        if (actualPosition.parentElement.id.includes("star_")) {
-            actualPosition.parentElement.innerHTML = '<img src="images/star.png" alt="etoile">';
+        const currentCase = currentPawn.parentElement;
+        const nextCase = document.getElementById(newPosition);
+
+        // Gérer la case actuelle
+        if (currentCase.id.includes("star_")) {
+            currentCase.innerHTML = '<img src="images/star.png" alt="etoile">';
         } else {
-            actualPosition.parentElement.innerHTML = "";
+            currentCase.innerHTML = "";
         }
-    
-        // Ajouter l'icône du pion à la nouvelle position
-        const caseNextPosition = document.getElementById(newPosition);
-        caseNextPosition.innerHTML = this.htmlIcon;
+
+        // Gérer la nouvelle case
+        let newContent = '';
+        if (nextCase.id.includes("star_")) {
+            newContent = '<img src="images/star.png" alt="etoile">';
+        }
+        
+        // Ajouter tous les pions existants et le nouveau pion
+        const existingPawns = nextCase.getElementsByTagName('img');
+        const pawnsCount = Array.from(existingPawns).filter(img => !img.alt.includes('etoile')).length + 1;
+
+        // Style pour la case contenant plusieurs pions
+        const caseStyle = pawnsCount > 1 ? 'style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;"' : '';
+
+        nextCase.setAttribute('style', caseStyle);
+
+        // Style pour les pions
+        const pawnStyle = pawnsCount > 1 ? ' style="width: 45%; height: auto;"' : '';
+        
+        for (let pawn of existingPawns) {
+            if (!pawn.alt.includes('etoile')) {
+                newContent += `<img id="${pawn.id}" src="${pawn.src}"${pawnStyle}>`;
+            }
+        }
+        // Ajouter le nouveau pion
+        newContent += `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png"${pawnStyle}>`;
+        
+        nextCase.innerHTML = newContent;
     }
-    
+
     move(steps) {
-        if (this.position === 0) { // Le pion ne peut pas bouger s'il n'est pas sortie de sa maison
+        if (this.position === 0) {
             console.log("Tu ne peux pas bouger un pion qui n'est pas sortit de sa maison !");
             return;
         }
-        
-        
-        if (!this.endPath) { // Si le pion n'est pas dans le chemin final
+
+        if (!this.endPath) {
             this.position += steps;
 
             if (this.position > 51) {
                 this.enterFinalZone();
-                this.move(this.position - 51); // On réessaie après avoir entré la zone finale
-                return
+                this.move(this.position - 51);
+                return;
             }
 
             const idNextPosition = idCaseAbs(this.position, this.color);
-
-            // Mise à jour de la planche avec le nouveau pion
             this.updateBoard(idNextPosition);
         } else {
             this.moveInFinalPath(steps);
         }
     }
-    
+
     moveInFinalPath(steps) {
         this.endPosition += steps;
-        let idCaseFinalPath = idFinalPath(this.color, this.endPosition);
+        const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
         this.updateBoard(idCaseFinalPath);
     }
     
