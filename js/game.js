@@ -31,7 +31,7 @@ function play(player) {
 
     while (rollAgain) {
         rollAgain = false ;
-        const dice = player.dice.roll() ;
+        const dice = player.dice.rollDice() ;
 
         if (dice === 6) {
             consecutiveSixes++;

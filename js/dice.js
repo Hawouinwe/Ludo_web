@@ -1,6 +1,6 @@
 class Dice {
-  constructor(diceId) {
-    this.element = document.getElementById(diceId); // Id de l'élément DOM
+  constructor() {
+    this.element = document.getElementById("dice"); // Id de l'élément DOM
     this.result = 1; // Initialiser avec une face visible par défaut
   }
 
@@ -17,15 +17,16 @@ class Dice {
     this.element.classList.add('show-' + this.result);
 
     console.log('Résultat du dé :', this.result); // Debug
-    setTimeout(rollDice(), 2000);
+    return this.result;
+    // setTimeout(this.rollDice(), 2000);
   }
 }
-
-// Initialisation
-const dice = new Dice('dice'); // Id de l'élément représentant le dé
 
 // Ajout d'un événement au bouton
 const rollButton = document.getElementById('roll');
 rollButton.onclick = function () {
   dice.rollDice(); // Appeler la méthode de l'instance
 };
+
+
+export { Dice };

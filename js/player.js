@@ -29,6 +29,7 @@
 
 import { printNextTurn } from "./ui.js";
 import { idCaseAbs, idFinalPath } from "./board.js";
+import { Dice } from "./dice.js";
 
 class Player {
     constructor(id, name, color) {
@@ -50,15 +51,18 @@ class Player {
     }
 
     // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
-    move(pawnId, steps) {
+    move(pawnId, steps = 1) {
         // Déplace le pion donné en fonction du résultat du dé
         // const steps = this.dice.roll();
+
+        this.pawns[pawnId].move(steps);
+
         // const steps = 1;
-        if (steps <= 6) {
-            this.pawns[pawnId].move(steps);
-        } else {
-            console.log("La variable 'steps' ne peut pas être supérieur à 6 !");
-        }
+        // if (steps <= 6) {
+        //     this.pawns[pawnId].move(steps);
+        // } else {
+        //     console.log("La variable 'steps' ne peut pas être supérieur à 6 !");
+        // }
     }
     // Pour jouer le cheval 2 :  Joueur.move(2, 6)
 
@@ -182,29 +186,6 @@ class Pawn {
     // isSafe() {
     //  // le pion est sur une étoile et les cases de départ (position 1) et ne peut pas etre mangé
     // }
-}
-
-
-// Dice.js
-class Dice {
-  constructor() {
-    this.result = 0;
-  }
-
-  roll() {
-    this.result = Math.floor(Math.random() * 6) + 1;
-    // this.animateRoll();
-    console.log("Résulat du dé: " + this.result);
-    return this.result;
-  }
-
-  animateRoll() {
-    console.log("Animation du dé...");
-  }
-
-  getResult() {
-    return this.result;
-  }
 }
 
 
