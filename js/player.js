@@ -107,11 +107,56 @@ class Pawn {
 
     updateCaseContent(caseElement, newContent) {
         if (caseElement.id.includes("star_")) {
-            const starImg = '<img src="images/star.png" alt="etoile">';
+            const starImg = '<img src="images/star.png" alt="etoile" class="star-image">';
             caseElement.innerHTML = newContent ? `${starImg}${newContent}` : starImg;
         } else {
             caseElement.innerHTML = newContent || "";
         }
+    }
+
+    updateBoard(newPosition) {
+        const currentPawn = this.currentElement;
+        if (!currentPawn) return;
+
+        const currentCase = currentPawn.parentElement;
+        const nextCase = document.getElementById(newPosition);
+
+        // Gérer la case actuelle
+        const otherPawnsInCurrentCase = this.getOtherPawnsHtml(currentCase);
+        this.updateCaseContent(currentCase, otherPawnsInCurrentCase);
+
+        // Récupérer les pions existants dans la nouvelle case
+        const existingPawns = Array.from(nextCase.getElementsByTagName('img'))
+            .filter(img => !img.alt.includes('etoile'));
+        
+        const pawnsCount = existingPawns.length + 1;
+
+        // Préparer le contenu de la nouvelle case
+        let newContent = '';
+        
+        // Ajouter l'étoile si nécessaire
+        if (nextCase.id.includes("star_")) {
+            newContent += '<img src="images/star.png" alt="etoile" class="star-image">';
+        }
+
+        // Créer un conteneur pour les pions si nécessaire
+        if (pawnsCount > 1) {
+            newContent += '<div class="pawns-container">';
+        }
+
+        // Ajouter les pions existants
+        existingPawns.forEach(pawn => {
+            newContent += `<img id="${pawn.id}" src="${pawn.src}" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`; 
+        });
+
+        // Ajouter le nouveau pion
+        newContent += `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`;
+
+        if (pawnsCount > 1) {
+            newContent += '</div>';
+        }
+        
+        nextCase.innerHTML = newContent;
     }
 
     exitStartZone() {
@@ -140,49 +185,6 @@ class Pawn {
             .filter(img => img.id !== `${this.playerId}_${this.id}` && !img.alt.includes('etoile'))
             .map(img => img.outerHTML)
             .join('');
-    }
-
-    updateBoard(newPosition) {
-        const currentPawn = this.currentElement;
-        if (!currentPawn) return;
-
-        const currentCase = currentPawn.parentElement;
-        const nextCase = document.getElementById(newPosition);
-
-        // Gérer la case actuelle
-        if (currentCase.id.includes("star_")) {
-            currentCase.innerHTML = '<img src="images/star.png" alt="etoile">';
-        } else {
-            currentCase.innerHTML = "";
-        }
-
-        // Gérer la nouvelle case
-        let newContent = '';
-        if (nextCase.id.includes("star_")) {
-            newContent = '<img src="images/star.png" alt="etoile">';
-        }
-        
-        // Ajouter tous les pions existants et le nouveau pion
-        const existingPawns = nextCase.getElementsByTagName('img');
-        const pawnsCount = Array.from(existingPawns).filter(img => !img.alt.includes('etoile')).length + 1;
-
-        // Style pour la case contenant plusieurs pions
-        const caseStyle = pawnsCount > 1 ? 'style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;"' : '';
-
-        nextCase.setAttribute('style', caseStyle);
-
-        // Style pour les pions
-        const pawnStyle = pawnsCount > 1 ? ' style="width: 45%; height: auto;"' : '';
-        
-        for (let pawn of existingPawns) {
-            if (!pawn.alt.includes('etoile')) {
-                newContent += `<img id="${pawn.id}" src="${pawn.src}"${pawnStyle}>`;
-            }
-        }
-        // Ajouter le nouveau pion
-        newContent += `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png"${pawnStyle}>`;
-        
-        nextCase.innerHTML = newContent;
     }
 
     move(steps) {
