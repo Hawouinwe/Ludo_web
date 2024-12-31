@@ -163,7 +163,31 @@ class Pawn {
         const subhome = document.querySelector(this.start);
         const startCase = document.querySelector(`#start_${this.color}`);
         subhome.innerHTML = "";
-        this.updateCaseContent(startCase, this.htmlIcon);
+        
+        // Récupérer les pions existants dans la case de départ
+        const existingPawns = Array.from(startCase.getElementsByTagName('img'));
+        const pawnsCount = existingPawns.length + 1;
+
+        let newContent = '';
+        
+        // Créer un conteneur pour les pions si nécessaire
+        if (pawnsCount > 1) {
+            newContent += '<div class="pawns-container">';
+        }
+
+        // Ajouter les pions existants
+        existingPawns.forEach(pawn => {
+            newContent += `<img id="${pawn.id}" src="${pawn.src}" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`; 
+        });
+
+        // Ajouter le nouveau pion
+        newContent += `<img id="${this.playerId}_${this.id}" src="images/icones_joueurs/${this.color}.png" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`;
+
+        if (pawnsCount > 1) {
+            newContent += '</div>';
+        }
+        
+        startCase.innerHTML = newContent;
         this.position = 1;
     }
 
@@ -181,6 +205,14 @@ class Pawn {
     }
 
     getOtherPawnsHtml(caseElement) {
+        // Si c'est une case de départ ou du chemin final
+        if (caseElement.classList.contains('start') || caseElement.classList.contains('final-path')) {
+            return Array.from(caseElement.getElementsByTagName('img'))
+                .filter(img => img.id !== `${this.playerId}_${this.id}`)
+                .map(img => img.outerHTML)
+                .join('');
+        }
+        // Pour les autres cases (avec potentiellement des étoiles)
         return Array.from(caseElement.getElementsByTagName('img'))
             .filter(img => img.id !== `${this.playerId}_${this.id}` && !img.alt.includes('etoile'))
             .map(img => img.outerHTML)

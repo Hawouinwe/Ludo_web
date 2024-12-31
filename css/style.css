@@ -371,3 +371,56 @@ p {
 .path.star {
     position: relative;
 }
+
+.start {
+    position: relative;
+}
+
+.start .pawns-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+}
+
+.start .pawn-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.start .pawn-image.multiple {
+    width: 45%;
+    height: 45%;
+}
+
+
+.final-path {
+    position: relative;
+}
+
+.final-path .pawns-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+}
+
+.final-path .pawn-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.final-path .pawn-image.multiple {
+    width: 45%;
+    height: 45%;
+}
