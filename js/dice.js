@@ -76,7 +76,7 @@ class Dice {
         // Add the class corresponding to the result
         this.element.classList.add('show-' + this.result);
   
-        console.log('Dice roll result:', this.result);
+        //console.log('Dice roll result:', this.result);
   
         const onTransitionEnd = () => {
           //console.log("Transition end detected");

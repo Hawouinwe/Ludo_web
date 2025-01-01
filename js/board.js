@@ -159,7 +159,7 @@ function idFinalPath(color, n) {
                 case 1 :
                     return "final_path_blue_5" ;
                 default:
-                    console.log("Mauvais indice fianl !");
+                    console.log("Mauvais indice final !");
             }
 
         case "yellow" :
@@ -276,6 +276,6 @@ function idCenter() {
     return "center" ;
 }
 
-export { idCaseAbs, idFinalPath };
+export { idCaseAbs, idFinalPath, relativeIdToAbsoluteId };
 
 
