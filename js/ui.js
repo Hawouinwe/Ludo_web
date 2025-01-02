@@ -7,8 +7,15 @@
 import { Player } from "./player.js";
 
 document.addEventListener('keydown', handleEnter);
-let players = [];
-let numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
+let players;
+let numPlayers;
+
+function initGame() {
+	players = [];
+	numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
+	createPlayers();
+	initializeBoard();
+}
 
 function createPlayers() {
 	numPlayers = Math.max(2, Math.min(4, parseInt(numPlayers))); 
@@ -20,6 +27,12 @@ function createPlayers() {
 	players.forEach((player) => {
 		console.log(player)
 		const home = document.querySelector(`#home_${player.color}`);
+
+		const pseudoElements = home.querySelectorAll('.pseudo');
+	    pseudoElements.forEach(pseudo => {
+	        pseudo.remove();
+	    });
+
 		home.innerHTML = `${home.innerHTML} <p class='pseudo' id='pseudo_player_${player.id}'>${player.name}</p>`;
 	})
 }
@@ -76,28 +89,43 @@ function initializeBoard() {
 
 
 // Animation fenetre d'alerte
-function showCustomAlert(title, content) {
+function showCustomAlert(title, content, end = false) {
     const overlay = document.getElementById('alertOverlay');
     const alertBox = overlay.querySelector('.custom-alert');
     const titleElement = document.getElementById('alertTitle');
     const contentElement = document.getElementById('alertContent');
-
-    // Set content
+    const replayButton = document.getElementById('replayButton');
+    const okButton = document.getElementById('alertButton');
     titleElement.textContent = title;
-    contentElement.textContent = content;
 
-    // Show overlay
+    if (end) {
+        const classment = content.map((pseudo, index) => {
+        	if (index === 0) {
+        		return `<div class="ranking-item">${index + 1} - ${pseudo} 👑</div>`;
+        	} else {
+            	return `<div class="ranking-item">${index + 1} - ${pseudo}</div>`;
+        	}
+        }).join('');
+        contentElement.innerHTML = classment;
+        
+        replayButton.style.display = 'inline-block';
+        replayButton.onclick = () => {
+            closeAlert();
+            initGame();
+        };
+    } else {
+        contentElement.innerHTML = content;
+        replayButton.style.display = 'none';
+        setTimeout(() => {
+            closeAlert();
+        }, 2000);
+    }
+
     overlay.style.display = 'block';
 
-    // Animate alert box
     requestAnimationFrame(() => {
         alertBox.classList.add('slide-in');
     });
-
-    // Auto-close after 2 seconds
-    setTimeout(() => {
-        closeAlert();
-    }, 2000);
 }
 
 function closeAlert() {
@@ -116,7 +144,6 @@ function closeAlert() {
 }
 document.getElementById('alertButton').addEventListener('click', closeAlert);
 
-createPlayers();
-initializeBoard();
+initGame();
 
-export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players, updateActivePlayer };
+export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players, updateActivePlayer, initGame };

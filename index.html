@@ -26,12 +26,15 @@
 
 	<!-- Partie pour l'affichage de la fenetre d'alerte -->
 	<div class="custom-alert-overlay" id="alertOverlay">
-        <div class="custom-alert">
-            <h2 class="alert-title" id="alertTitle"></h2>
-            <div class="alert-content" id="alertContent"></div>
-            <button class="alert-button" id="alertButton">OK</button>
-        </div>
-    </div>
+	    <div class="custom-alert">
+	        <h2 class="alert-title" id="alertTitle"></h2>
+	        <div class="alert-content" id="alertContent"></div>
+	        <div class="alert-buttons">
+	            <button class="alert-button" id="alertButton">OK</button>
+	            <button class="alert-button" id="replayButton" style="display: none;">Rejouer</button>
+	        </div>
+	    </div>
+	</div>
 
 	<!-- Section du Plateau de jeu -->
 	<section class="board">

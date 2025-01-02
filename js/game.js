@@ -65,7 +65,6 @@ async function play(player) {
         
         //console.log("Avant attente") ;
         updateActivePlayer(player.id);
-        console.log(player.id)
         showCustomAlert(`${player.name}`, "À toi de jouer !")
         //console.log("Lancez le dé") ;
         const dice = await player.dice.rollDice() ;
@@ -205,6 +204,7 @@ async function gameLoop(n) {
 async function game() {
     let endGame = false ;
     let i = 0 ;
+    let classment = [];
     while (!endGame) {
         //console.log("joueur :" + (i % numPlayers) + "\n");
         await play(players[i % numPlayers]);
@@ -212,6 +212,7 @@ async function game() {
         for(let p = 0 ; p < players.length ; p++) {
             if (players[p].hasWon()) {
                 nb_victorious++ ;
+                classment.push(players[p].name);
             }
         }
         if(nb_victorious == players.length - 1) {
@@ -219,11 +220,11 @@ async function game() {
         }
         i++ ;
     }
-    endOfGame() ;
+    endOfGame(classment) ;
 }
 
-function endOfGame() {
-    showCustomAlert("La partie est finie !") ;
+function endOfGame(classment) {
+    showCustomAlert("Classement final !", classment, true) ;
 }
 
 
