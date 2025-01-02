@@ -1,7 +1,7 @@
 
 //import { idCaseAbs } from "./board";
 import { Player, Pawn } from "./player.js"
-import { players, numPlayers, showCustomAlert, closeAlert } from "./ui.js";
+import { players, numPlayers, showCustomAlert, closeAlert, updateActivePlayer } from "./ui.js";
 import { idCaseAbs, relativeIdToAbsoluteId } from "./board.js";
 
 
@@ -64,6 +64,8 @@ async function play(player) {
         rollAgain = false ;
         
         //console.log("Avant attente") ;
+        updateActivePlayer(player.id);
+        console.log(player.id)
         showCustomAlert(`${player.name}`, "À toi de jouer !")
         //console.log("Lancez le dé") ;
         const dice = await player.dice.rollDice() ;

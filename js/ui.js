@@ -20,7 +20,7 @@ function createPlayers() {
 	players.forEach((player) => {
 		console.log(player)
 		const home = document.querySelector(`#home_${player.color}`);
-		home.innerHTML = home.innerHTML + "<p style='font-weight:bold;'>" + player.name + "</p>";
+		home.innerHTML = `${home.innerHTML} <p class='pseudo' id='pseudo_player_${player.id}'>${player.name}</p>`;
 	})
 }
 
@@ -51,6 +51,13 @@ function printNextTurn(actualPlayer = -1) {
 	return nextPlayer;
 }
 
+function updateActivePlayer(playerId) {
+    document.querySelectorAll('.pseudo').forEach(player => {
+        player.classList.remove('active-player');
+    });
+    
+    document.querySelector(`#pseudo_player_${playerId}`).classList.add('active-player');
+}
 
 function handleEnter(event) {
 	if (event.key === "Enter" || event.key === " ") {
@@ -112,4 +119,4 @@ document.getElementById('alertButton').addEventListener('click', closeAlert);
 createPlayers();
 initializeBoard();
 
-export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players };
+export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players, updateActivePlayer };

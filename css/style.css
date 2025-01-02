@@ -12,13 +12,17 @@ body {
     height: 100vh;
 }
 
-p {
+.pseudo {
     text-shadow:
         1px 1px 0 white, 
         -1px -1px 0 white,  
         1px -1px 0 white,  
         -1px 1px 0 white;
     padding-left: 2px;
+}
+
+.active-player {
+    text-decoration: underline;
 }
 
 /* Plateau */
