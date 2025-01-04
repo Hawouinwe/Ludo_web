@@ -79,6 +79,16 @@ function handleEnter(event) {
 }
 
 function initializeBoard() {
+	// supprimer tous les pions du plateau
+	for (let playerId = 1; playerId <= 4; playerId++) {
+        for (let pawnId = 0; pawnId <= 3; pawnId++) {
+            const pawnElement = document.getElementById(`${playerId}_${pawnId}`);
+            if (pawnElement) {
+                pawnElement.remove();
+            }
+        }
+    }
+	// Ajouter les pions pour la nouvelle partie
 	for (const player of players) {
 		for (const pawn of player.pawns) {
 			const subhome = document.querySelector(`#subhome_${player.color}_${pawn.id}`);
