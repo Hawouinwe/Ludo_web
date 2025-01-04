@@ -51,11 +51,11 @@ class Player {
     }
 
     // Ces fonctions vont servir à appelé les fonctions dans la classe Pawn, ca te permettra de juste taper "player[0].move(0)" au lieu de "player[0].pawns[0].move()", c'est pour ca qu'elles ont les mêmes nom dans la classe Pawn
-    move(pawnId, steps = 1) {
+    async move(pawnId, steps = 1) {
         // Déplace le pion donné en fonction du résultat du dé
         // const steps = this.dice.roll();
 
-        this.pawns[pawnId].move(steps);
+        await this.pawns[pawnId].move(steps);
 
         // const steps = 1;
         // if (steps <= 6) {
@@ -219,7 +219,7 @@ class Pawn {
             .join('');
     }
 
-    move(steps) {
+    async move(steps) {
         if (this.position === 0) {
             console.log("Tu ne peux pas bouger un pion qui n'est pas sortit de sa maison !");
             return;
@@ -230,28 +230,98 @@ class Pawn {
         }
 
         if (!this.endPath) {
-            this.position += steps;
-
-            if (this.position > 51) {
-                this.enterFinalZone();
-                this.move(this.position - 51);
-                return;
+            const targetPosition = this.position + steps;
+            
+            // Déplacement pas à pas
+            for (let i = this.position + 1; i <= targetPosition; i++) {
+                if (i > 51) {
+                    this.enterFinalZone();
+                    await this.move(targetPosition - 51);
+                    return;
+                }
+                
+                this.position = i;
+                const idNextPosition = idCaseAbs(this.position, this.color);
+                await this.animateMove(idNextPosition);
+                await new Promise(resolve => setTimeout(resolve, 200)); // Délai entre chaque saut
             }
-
-            const idNextPosition = idCaseAbs(this.position, this.color);
-            this.updateBoard(idNextPosition);
         } else {
-            this.moveInFinalPath(steps);
+            await this.moveInFinalPath(steps);
         }
     }
 
-    moveInFinalPath(steps) {
-        this.endPosition += steps;
-        const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
-        this.updateBoard(idCaseFinalPath);
-        if (this.endPosition === 6) {
-            this.hasFinished = true ;
-            console.log(`${this.id} a fini !!!!!`) ;
+    async moveInFinalPath(steps) {
+        const targetPosition = this.endPosition + steps;
+        
+        // Déplacement pas à pas dans le chemin final
+        for (let i = this.endPosition + 1; i <= targetPosition; i++) {
+            this.endPosition = i;
+            const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
+            await this.animateMove(idCaseFinalPath);
+            await new Promise(resolve => setTimeout(resolve, 50)); // Délai entre chaque saut
+            
+            if (this.endPosition === 6) {
+                this.hasFinished = true;
+                console.log(`${this.id} a fini !!!!!`);
+            }
+        }
+    }
+
+    async animateMove(newPosition) {
+        const currentPawn = this.currentElement;
+        if (!currentPawn) return;
+
+        const currentCase = currentPawn.parentElement;
+        const nextCase = document.getElementById(newPosition);
+        
+        // Sauvegarder la position initiale
+        const startRect = currentPawn.getBoundingClientRect();
+        const endRect = nextCase.getBoundingClientRect();
+        
+        // Créer un clone pour l'animation
+        const clone = currentPawn.cloneNode(true);
+        document.body.appendChild(clone);
+        
+        // Positionner le clone
+        clone.style.position = 'fixed';
+        clone.style.left = startRect.left + 'px';
+        clone.style.top = startRect.top + 'px';
+        clone.style.zIndex = '1000';
+        clone.style.width = startRect.width + 'px';
+        clone.style.height = startRect.height + 'px';
+        
+        // Cacher le pion original
+        currentPawn.style.visibility = 'hidden';
+        
+        // Animer le saut
+        await clone.animate([
+            {
+                left: startRect.left + 'px',
+                top: startRect.top + 'px'
+            },
+            {
+                left: (startRect.left + endRect.left) / 2 + 'px',
+                top: Math.min(startRect.top, endRect.top) - 30 + 'px' // Point culminant du saut
+            },
+            {
+                left: endRect.left + 'px',
+                top: endRect.top + 'px'
+            }
+        ], {
+            duration: 100,
+            easing: 'ease-in-out'
+        }).finished;
+
+        // Supprimer le clone
+        clone.remove();
+        
+        // Mettre à jour le plateau
+        this.updateBoard(newPosition);
+        
+        // Rendre le pion visible à sa nouvelle position
+        const updatedPawn = this.currentElement;
+        if (updatedPawn) {
+            updatedPawn.style.visibility = 'visible';
         }
     }
     
