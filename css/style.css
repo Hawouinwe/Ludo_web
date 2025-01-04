@@ -25,6 +25,11 @@ body {
     text-decoration: underline;
 }
 
+.highlight {
+    border: 2px solid purple;
+    cursor: pointer;
+}
+
 /* Plateau */
 
 .board{

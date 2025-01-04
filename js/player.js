@@ -224,6 +224,10 @@ class Pawn {
             console.log("Tu ne peux pas bouger un pion qui n'est pas sortit de sa maison !");
             return;
         }
+        if (this.hasFinished) {
+            console.log("Tu ne peux pas bouger un pion qui a finit !");
+            return;
+        }
 
         if (!this.endPath) {
             this.position += steps;
@@ -245,6 +249,10 @@ class Pawn {
         this.endPosition += steps;
         const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
         this.updateBoard(idCaseFinalPath);
+        if (this.endPosition === 6) {
+            this.hasFinished = true ;
+            console.log(`${this.id} a fini !!!!!`) ;
+        }
     }
     
 
