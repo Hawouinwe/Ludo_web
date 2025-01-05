@@ -282,7 +282,7 @@ async function gameLoop(n) {
 
 
 async function game() {
-    let endGame = true ;
+    let endGame = false ;
     let i = 0 ;
     let classment = [];
     while (!endGame) {
@@ -320,4 +320,4 @@ game() ;
 // Appel de la fonction asynchrone `gameLoop`
 
 
-
+export { game };

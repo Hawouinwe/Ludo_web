@@ -5,6 +5,7 @@
 // afficher la fin du jeu (donc le gagnant)
 
 import { Player } from "./player.js";
+import { game } from "./game.js";
 
 document.addEventListener('keydown', handleEnter);
 let players;
@@ -15,6 +16,7 @@ function initGame() {
 	numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
 	createPlayers();
 	initializeBoard();
+	game();
 }
 
 function createPlayers() {

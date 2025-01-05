@@ -22,7 +22,7 @@ body {
 }
 
 .active-player {
-    text-decoration: underline;
+    color: purple;
 }
 
 .highlight {
