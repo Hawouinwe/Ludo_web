@@ -144,24 +144,34 @@
       color: #333;
     }
 
-    .social-icons a {
-      margin-right: 15px;
-      color: #333;
-      font-size: 1.5rem;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .social-icons a:hover {
-      color: #007bff;
-    }
+   
   </style>
 </head>
 <body>
-  <div style="text-align: center; margin-top: 20%;">
-    <button class="play-btn" onclick="startGame()">Jouer Maintenant</button>
-  </div>
+    <header>
+        <div class="logo-container">
+          <img src="css/ludo_image.png" alt="Logo LudoKing" class="logo">
+          <span class="logo-animation">LudoWeb</span>
+        </div>
+        <nav>
+          <ul>
+          <li><a href="regles.html" class="highlight">Règles du Jeu</a></li>
+        </ul>
+        </nav>
+      </header>
+      <main class="main">
+        <h1>Bienvenue sur Ludo Web !</h1>
+        <button class="play-btn" onclick="startGame()">Jouer Maintenant</button>
+      </main>
 
+    <footer>
+        <div class="footer-left">
+          <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
+        </div>
+        <div class="social-icons">
+          <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
+        </div>
+      </footer>
   <script>
     function startGame() {
       // Redirection vers la page du jeu
