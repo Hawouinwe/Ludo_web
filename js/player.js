@@ -122,8 +122,14 @@ class Pawn {
         const nextCase = document.getElementById(newPosition);
 
         // Gérer la case actuelle
-        const otherPawnsInCurrentCase = this.getOtherPawnsHtml(currentCase);
-        this.updateCaseContent(currentCase, otherPawnsInCurrentCase);
+        const otherPawnsInCurrentCase = Array.from(currentCase.getElementsByTagName('img'))
+            .filter(img => !img.alt.includes('etoile') && img !== currentPawn);
+        
+        // Mettre à jour les classes des pions restants dans la case actuelle
+        if (otherPawnsInCurrentCase.length === 1) {
+            otherPawnsInCurrentCase[0].classList.remove('multiple');
+        }
+        this.updateCaseContent(currentCase, otherPawnsInCurrentCase.map(img => img.outerHTML).join(''));
 
         // Récupérer les pions existants dans la nouvelle case
         const existingPawns = Array.from(nextCase.getElementsByTagName('img'))
@@ -131,20 +137,17 @@ class Pawn {
         
         const pawnsCount = existingPawns.length + 1;
 
-        // Préparer le contenu de la nouvelle case
         let newContent = '';
         
-        // Ajouter l'étoile si nécessaire
         if (nextCase.id.includes("star_")) {
             newContent += '<img src="images/star.png" alt="etoile" class="star-image">';
         }
 
-        // Créer un conteneur pour les pions si nécessaire
         if (pawnsCount > 1) {
             newContent += '<div class="pawns-container">';
         }
 
-        // Ajouter les pions existants
+        // Ajouter les pions existants avec la classe appropriée
         existingPawns.forEach(pawn => {
             newContent += `<img id="${pawn.id}" src="${pawn.src}" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`; 
         });
@@ -164,18 +167,16 @@ class Pawn {
         const startCase = document.querySelector(`#start_${this.color}`);
         subhome.innerHTML = "";
         
-        // Récupérer les pions existants dans la case de départ
         const existingPawns = Array.from(startCase.getElementsByTagName('img'));
         const pawnsCount = existingPawns.length + 1;
 
         let newContent = '';
         
-        // Créer un conteneur pour les pions si nécessaire
         if (pawnsCount > 1) {
             newContent += '<div class="pawns-container">';
         }
 
-        // Ajouter les pions existants
+        // Ajouter les pions existants avec la classe appropriée
         existingPawns.forEach(pawn => {
             newContent += `<img id="${pawn.id}" src="${pawn.src}" class="pawn-image${pawnsCount > 1 ? ' multiple' : ''}">`; 
         });
