@@ -258,18 +258,22 @@ body {
 #subhome_red_0 {
     grid-column-start : 2;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_red_1 {
     grid-column-start : 3;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_red_2 {
     grid-column-start : 2;
     grid-row-start : 3;
+    border: none;
 }
 #subhome_red_3 {
     grid-column-start : 3;
     grid-row-start : 3;
+    border: none;
 }
 
 
@@ -284,21 +288,30 @@ body {
     grid-template-rows: repeat(4, 1fr);
     gap: 2px;
 }
+
+.subhome {
+    border: none;
+}
+
 #subhome_blue_0 {
     grid-column-start : 2;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_blue_1 {
     grid-column-start : 3;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_blue_2 {
     grid-column-start : 2;
     grid-row-start : 3;
+    border: none;
 }
 #subhome_blue_3 {
     grid-column-start : 3;
     grid-row-start : 3;
+    border: none;
 }
 
 #home_yellow {
@@ -315,18 +328,22 @@ body {
 #subhome_yellow_0 {
     grid-column-start : 2;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_yellow_1 {
     grid-column-start : 3;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_yellow_2 {
     grid-column-start : 2;
     grid-row-start : 3;
+    border: none;
 }
 #subhome_yellow_3 {
     grid-column-start : 3;
     grid-row-start : 3;
+    border: none;
 }
 
 #home_green {
@@ -343,18 +360,22 @@ body {
 #subhome_green_0 {
     grid-column-start : 2;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_green_1 {
     grid-column-start : 3;
     grid-row-start : 2;
+    border: none;
 }
 #subhome_green_2 {
     grid-column-start : 2;
     grid-row-start : 3;
+    border: none;
 }
 #subhome_green_3 {
     grid-column-start : 3;
     grid-row-start : 3;
+    border: none;
 }
 
 /* Chemin Final rouge */
