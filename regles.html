@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Règles du Jeu - Ludo Web</title>
+   <style>
+    /* RESET & GLOBAL STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* HEADER STYLES */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f9fa;
+      padding: 10px 20px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo-animation {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #007bff;
+    }
+
+    .highlight {
+    background-color: #ffd700; /* Couleur dorée */
+    color: #000; /* Texte noir */
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .highlight:hover {
+        transform: scale(1.1); /* Agrandissement au survol */
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* MAIN SECTION (ACCUEIL) */
+    .main1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligner le contenu à gauche */
+    justify-content: flex-start; /* Soulever le contenu en haut */
+    height: calc(100vh - 100px); /* Vue complète moins header/footer */
+    text-align: left; /* Texte aligné à gauche */
+    background-color: #f0e68c;
+    padding: 20px; /* Ajouter un espace autour */
+    padding-top: 50px; /* Soulever légèrement le contenu */
+}
+
+.main1 h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    margin-top: 0; /* Retire tout espace inutile en haut */
+}
+
+
+    .play-btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .play-btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    /* FOOTER STYLES */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f9fa;
+      padding: 10px 20px;
+      border-top: 2px solid #ddd;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .footer-left {
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .social-icons a {
+      margin-right: 15px;
+      color: #333;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+  </style>
+  <link rel="stylesheet" href="index.html">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="css/ludo_image.png" alt="Logo LudoKing" class="logo">
+      <span class="logo-animation">LudoWeb</span>
+    </div>
+    <nav>
+      <ul>
+      <li><a href="index.html" class="highlight">Accueil</a></li>
+    </ul>
+    </nav>
+  </header>
+  
+  <main class="main1">
+    <h1>Règles du Jeu Ludo Web</h1>
+    <section>
+      <h2>Objectif du jeu</h2>
+      <p>Le but du jeu est de déplacer vos quatre pions de la case de départ jusqu'à la case d'arrivée avant vos adversaires.</p>
+    </section>
+    
+    <section>
+      <h2>Mise en place</h2>
+      <ul>
+        <li>Chaque joueur choisit une couleur et place ses pions dans la zone de départ correspondante.</li>
+        <li>Un dé à six faces est utilisé pour déterminer les déplacements.</li>
+        <li>Le jeu peut être joué par 2 à 4 joueurs.</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Règles de base</h2>
+      <ul>
+        <li>Un joueur doit faire un 6 pour sortir un pion de la zone de départ.</li>
+        <li>Un 6 permet également de rejouer un tour.</li>
+        
+        <li>Si un pion atterrit sur une case occupée par un pion adverse, ce dernier retourne à sa zone de départ, 
+          <strong>sauf si le pion adverse est sur une case étoile.
+        </li>
+        <li>Le jeu continue jusqu'à ce qu'un joueur ait déplacé tous ses pions à la case d'arrivée.</li>
+      </ul>
+    </section>
+
+  </main>
+  
+  <footer>
+    <div class="footer-left">
+      <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
+    </div>
+    <div class="social-icons">
+      <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
+    </div>
+  </footer>
+</body>
+</html>
