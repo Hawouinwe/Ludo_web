@@ -150,16 +150,16 @@
 <body>
     <header>
         <div class="logo-container">
-          <img src="css/ludo_image.png" alt="Logo LudoKing" class="logo">
-          <span class="logo-animation">LudoWeb</span>
+            <img src="css/ludo_image.png" alt="Logo LudoKing" class="logo">
+            <span class="logo-animation">LudoWeb</span>
         </div>
         <nav>
-          <ul>
-            <li><a href="regles.html" class="highlight">Règles du Jeu</a></li>
-          </ul>
+            <ul>
+                <li><a href="regles.html" class="highlight">Règles du Jeu</a></li>
+            </ul>
         </nav>
     </header>
-    
+
     <main class="main">
         <h1>Bienvenue sur Ludo Web !</h1>
         <button class="play-btn" onclick="startGame()">Jouer Maintenant</button>
@@ -170,34 +170,52 @@
 
     <footer>
         <div class="footer-left">
-          <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
+            <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
         </div>
         <div class="social-icons">
-          <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
         </div>
     </footer>
 
     <script>
         function startGame() {
-            // Crée un élément iframe
             const iframe = document.createElement('iframe');
-            
-            // Définit l'URL de la source de l'iframe
             iframe.src = './ludogame.html';
-            
-            // Définir les attributs de l'iframe (par exemple la taille)
             iframe.width = "100%";
-            iframe.height = "600px";  // Tu peux ajuster la hauteur comme tu le souhaites
-            iframe.frameBorder = "0"; // Retire la bordure autour de l'iframe
             
-            // Ajoute l'iframe dans le container de la page
+            // Calcule la hauteur en fonction de la taille de l'écran
+            const windowHeight = window.innerHeight;
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const footerHeight = document.querySelector('footer').offsetHeight;
+            const padding = 40; // Espace supplémentaire pour la marge
+            
+            const iframeHeight = windowHeight - (headerHeight + footerHeight + padding);
+            iframe.height = `${Math.max(300, iframeHeight)}px`; // Minimum de 300px
+            
+            iframe.frameBorder = "0";
+            
             const gameContainer = document.getElementById('game-container');
-            gameContainer.innerHTML = '';  // Vide le container avant d'ajouter l'iframe
-            gameContainer.appendChild(iframe); // Ajoute l'iframe
+            gameContainer.innerHTML = '';
+            gameContainer.appendChild(iframe);
 
             const playButton = document.querySelector('.play-btn');
             playButton.textContent = "Recommencer la partie";
         }
+
+        // Ajuster la taille lors du redimensionnement de la fenêtre
+        window.addEventListener('resize', () => {
+            const iframe = document.querySelector('#game-container iframe');
+            if (iframe) {
+                const windowHeight = window.innerHeight;
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const footerHeight = document.querySelector('footer').offsetHeight;
+                const padding = 40;
+                
+                const iframeHeight = windowHeight - (headerHeight + footerHeight + padding);
+                iframe.height = `${Math.max(300, iframeHeight)}px`;
+            }
+        });
     </script>
 </body>
+
 
