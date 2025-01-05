@@ -194,6 +194,9 @@
             const gameContainer = document.getElementById('game-container');
             gameContainer.innerHTML = '';  // Vide le container avant d'ajouter l'iframe
             gameContainer.appendChild(iframe); // Ajoute l'iframe
+
+            const playButton = document.querySelector('.play-btn');
+            playButton.textContent = "Recommencer la partie";
         }
     </script>
 </body>
