@@ -256,14 +256,16 @@ class Pawn {
         // Déplacement pas à pas dans le chemin final
         for (let i = this.endPosition + 1; i <= targetPosition; i++) {
             this.endPosition = i;
-            const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
-            await this.animateMove(idCaseFinalPath);
-            await new Promise(resolve => setTimeout(resolve, 50)); // Délai entre chaque saut
+            let idCaseFinalPath = idFinalPath(this.color, this.endPosition);
             
             if (this.endPosition === 6) {
                 this.hasFinished = true;
                 console.log(`${this.id} a fini !!!!!`);
+                idCaseFinalPath = `subcenter_${this.color}_${this.id}`;
             }
+            await this.animateMove(idCaseFinalPath);
+            await new Promise(resolve => setTimeout(resolve, 50)); // Délai entre chaque saut
+            
         }
     }
 
