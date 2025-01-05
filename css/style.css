@@ -1,547 +1,239 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #f8f9fa;
+    --accent-color: #ffd700;
+    --text-color: #333;
+    --border-color: #ddd;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Luckiest Guy";
 }
 
 body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    background-color: #f0e68c;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ddd;
 }
 
-.pseudo {
-    text-shadow:
-        1px 1px 0 white, 
-        -1px -1px 0 white,  
-        1px -1px 0 white,  
-        -1px 1px 0 white;
-    padding-left: 2px;
-}
-
-.active-player {
-    color: purple;
+nav {
+    margin-left: auto; /* Pour pousser le bouton vers la droite */
 }
 
 .highlight {
-    border: 2px solid purple;
-    cursor: pointer;
+    background-color: #ffd700;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Plateau */
-
-.board{
-    display : grid;
-    grid-template-columns: repeat(15, 1fr) ;
-    grid-template-rows: repeat(15, 1fr);
-    gap: 2px;
-    width: 600px;
-    height: 600px;
-    border: 2px solid black;
+.highlight:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
 }
 
-.path{
-    background-color: white;
-}
-
-.board div {
-    border: 1px solid black; /* Light border for each square */
-    overflow: hidden;
-}
-
-.board div img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ou 'cover' si vous préférez que l'image remplisse la div sans la déformer */
-}
-/* Classe : */
-
-.red{
-    background-color: red;
-}
-
-.blue{
-    background-color: blue;
-}
-
-.yellow{
-    background-color: yellow;
-}
-
-.green{
-    background-color: green;
-}
-
-
-.isred{
-    background-color:  rgb(255, 200, 200);
-}
-.isblue{
-    background-color:  rgb(200, 200, 255);
-}
-.isyellow{
-    background-color:  rgb(255, 255, 200);
-}
-.isgreen{
-    background-color:  rgb(200, 255, 200);
-}
-
-
-
-
-/* Positionnement de chaque objet : */
-
-#center{
-    grid-column-start: 7;
-    grid-column-end: span 3;
-    grid-row-start: 7;
-    grid-row-end: span 3;
-    border-color: black;
-    border-style: solid;
-
-    display : grid ;
-    grid-template-columns: repeat(2, 1fr) ;
-    grid-template-rows: repeat(2, 1fr);
-    gap: 1px;
-}
-
-#subcenter_red{
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    display : grid ;
-    gap : 0;
-    border: none;
-}
-#subcenter_red_0{
-    grid-column-start: 1;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_red_1{
-    grid-column-start: 2;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_red_2{
-    grid-column-start: 2;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_red_3{
-    grid-column-start: 1;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-
-#subcenter_blue{
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-column-start: 2 ;
-    grid-row-start: 1;
-    display : grid ;
-    gap : 0;
-    border: none;
-}
-#subcenter_blue_0{
-    grid-column-start: 1;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_blue_1{
-    grid-column-start: 2;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_blue_2{
-    grid-column-start: 2;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_blue_3{
-    grid-column-start: 1;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-
-#subcenter_yellow{
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-column-start: 2;
-    grid-row-start: 2;
-    display : grid ;
-    gap : 0;
-    border: none;
-}
-#subcenter_yellow_0{
-    grid-column-start: 1;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_yellow_1{
-    grid-column-start: 2;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_yellow_2{
-    grid-column-start: 2;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_yellow_3{
-    grid-column-start: 1;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-
-#subcenter_green{
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-column-start: 1;
-    grid-row-start: 2;
-    display : grid ;
-    gap : 0;
-    border: none;
-}
-#subcenter_green_0{
-    grid-column-start: 1;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_green_1{
-    grid-column-start: 2;
-    grid-row-start: 1;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_green_2{
-    grid-column-start: 2;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-#subcenter_green_3{
-    grid-column-start: 1;
-    grid-row-start: 2;
-    border: none;
-    flex-shrink: 0;
-}
-
-/* Maisons des chevaux */
-#home_red {
-    grid-column-start: 1;
-    grid-column-end: span 6;
-    grid-row-start: 1;
-    grid-row-end: span 6;
-
-    display : grid;
-    grid-template-columns: repeat(4, 1fr) ;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 2px;
-}
-#subhome_red_0 {
-    grid-column-start : 2;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_red_1 {
-    grid-column-start : 3;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_red_2 {
-    grid-column-start : 2;
-    grid-row-start : 3;
-    border: none;
-}
-#subhome_red_3 {
-    grid-column-start : 3;
-    grid-row-start : 3;
-    border: none;
-}
-
-
-#home_blue {
-    grid-column-start: 10;
-    grid-column-end: span 6;
-    grid-row-start: 1;
-    grid-row-end: span 6;
-
-    display : grid;
-    grid-template-columns: repeat(4, 1fr) ;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 2px;
-}
-
-.subhome {
-    border: none;
-}
-
-#subhome_blue_0 {
-    grid-column-start : 2;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_blue_1 {
-    grid-column-start : 3;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_blue_2 {
-    grid-column-start : 2;
-    grid-row-start : 3;
-    border: none;
-}
-#subhome_blue_3 {
-    grid-column-start : 3;
-    grid-row-start : 3;
-    border: none;
-}
-
-#home_yellow {
-    grid-column-start: 10;
-    grid-column-end: span 6;
-    grid-row-start: 10;
-    grid-row-end: span 6;
-
-    display : grid;
-    grid-template-columns: repeat(4, 1fr) ;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 2px;
-}
-#subhome_yellow_0 {
-    grid-column-start : 2;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_yellow_1 {
-    grid-column-start : 3;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_yellow_2 {
-    grid-column-start : 2;
-    grid-row-start : 3;
-    border: none;
-}
-#subhome_yellow_3 {
-    grid-column-start : 3;
-    grid-row-start : 3;
-    border: none;
-}
-
-#home_green {
-    grid-column-start: 1;
-    grid-column-end: span 6;
-    grid-row-start: 10;
-    grid-row-end: span 6;
-
-    display : grid;
-    grid-template-columns: repeat(4, 1fr) ;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 2px;
-}
-#subhome_green_0 {
-    grid-column-start : 2;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_green_1 {
-    grid-column-start : 3;
-    grid-row-start : 2;
-    border: none;
-}
-#subhome_green_2 {
-    grid-column-start : 2;
-    grid-row-start : 3;
-    border: none;
-}
-#subhome_green_3 {
-    grid-column-start : 3;
-    grid-row-start : 3;
-    border: none;
-}
-
-/* Chemin Final rouge */
-#final_path_red_1{
-    grid-column-start: 2;
-    grid-row-start: 8;
-}
-#final_path_red_2{
-    grid-column-start: 3;
-    grid-row-start: 8;
-}
-#final_path_red_3{
-    grid-column-start: 4;
-    grid-row-start: 8;
-}
-#final_path_red_4{
-    grid-column-start: 5;
-    grid-row-start: 8;
-}
-#final_path_red_5{
-    grid-column-start: 6;
-    grid-row-start: 8;
-}
-
-/* Chemin Final bleu */
-#final_path_blue_1{
-    grid-column-start: 8;
-    grid-row-start: 2;
-}
-#final_path_blue_2{
-    grid-column-start: 8;
-    grid-row-start: 3;
-}
-#final_path_blue_3{
-    grid-column-start: 8;
-    grid-row-start: 4;
-}
-#final_path_blue_4{
-    grid-column-start: 8;
-    grid-row-start: 5;
-}
-#final_path_blue_5{
-    grid-column-start: 8;
-    grid-row-start: 6;
-}
-
-/* Chemin Final jaune */
-#final_path_yellow_1{
-    grid-column-start: 14;
-    grid-row-start: 8;
-}
-#final_path_yellow_2{
-    grid-column-start: 13;
-    grid-row-start: 8;
-}
-#final_path_yellow_3{
-    grid-column-start: 12;
-    grid-row-start: 8;
-}
-#final_path_yellow_4{
-    grid-column-start: 11;
-    grid-row-start: 8;
-}
-#final_path_yellow_5{
-    grid-column-start: 10;
-    grid-row-start: 8;
-}
-
-/* Chemin Final vert */
-#final_path_green_1{
-    grid-column-start: 8;
-    grid-row-start: 14;
-}
-#final_path_green_2{
-    grid-column-start: 8;
-    grid-row-start: 13;
-}
-#final_path_green_3{
-    grid-column-start: 8;
-    grid-row-start: 12;
-}
-#final_path_green_4{
-    grid-column-start: 8;
-    grid-row-start: 11;
-}
-#final_path_green_5{
-    grid-column-start: 8;
-    grid-row-start: 10;
-}
-
-/* Cases de départs */
-#start_red{
-    grid-area: 7 / 2;
-}
-#start_blue{
-    grid-area: 2 / 9;
-}
-#start_yellow{
-    grid-area: 9 / 14;
-}
-#start_green{
-    grid-area: 14 / 7;
-}
-
-/* Cases finales (avant le chemin final) */
-#last_case_red{
-    grid-area: 8 / 1;
-}
-#last_case_blue{
-    grid-area: 1 / 8;
-}
-#last_case_yellow{
-    grid-area: 8 / 15;
-}
-#last_case_green{
-    grid-area: 15 / 8;
-}
-
-/* Cases avec étoiles */
-#star_red{
-    grid-area: 3 / 7;
-}
-#star_blue{
-    grid-area: 7 / 13;
-}
-#star_yellow{
-    grid-area: 13 / 9;
-}
-#star_green{
-    grid-area: 9 / 3;
-}
-
-
-.star-image {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Ajout d'un z-index plus bas */
-}
-
-.pawns-container {
-    position: relative;
+.logo-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 1rem;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.logo-animation {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Main Content */
+.board {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f0e68c;
+}
+
+.board h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.play-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#game-container {
     width: 100%;
-    height: 100%;
-    z-index: 2;
+    height: auto;
+    margin-top: 10px;
 }
 
-.pawn-image {
-    position: relative; /* Ajout */
-    z-index: 2; /* Ajout d'un z-index plus élevé */
+#game-container iframe {
+    width: 100%;
+    min-height: 500px; /* ou la hauteur que vous souhaitez */
+    border: none;
 }
 
-.pawn-image.multiple {
-    width: 45%;
-    height: 45%;
+/* Modification pour le footer */
+footer {
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-top: 2px solid var(--border-color);
+    position: fixed; /* Remis en position fixed */
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Assurez-vous que les cases qui peuvent contenir des étoiles ont une position relative */
-.path.star {
-    position: relative;
+.footer-left {
+    font-size: 0.9rem;
+    color: var(--text-color);
 }
 
+.social-icons {
+    margin-left: auto; /* Pour pousser l'icône vers la droite */
+}
+
+.social-icons a {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .board h1 {
+        font-size: 2rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+
+/* Styles pour la page des règles */
+.rules-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0e68c;
+    min-height: calc(100vh - 140px); /* Pour éviter que le footer ne chevauche le contenu */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.rules-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.rules-section {
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.rules-section h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.rules-section p, 
+.rules-section ul {
+    color: #444;
+    line-height: 1.6;
+}
+
+.rules-section ul {
+    padding-left: 20px;
+}
+
+.rules-section li {
+    margin-bottom: 10px;
+}
+
+.rules-section strong {
+    color: #007bff;
+}
+
+/* Responsive design pour la page des règles */
+@media (max-width: 768px) {
+    .rules-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .rules-container h1 {
+        font-size: 2rem;
+    }
+
+    .rules-section h2 {
+        font-size: 1.5rem;
+    }
+}

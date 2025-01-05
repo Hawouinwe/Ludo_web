@@ -1,176 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil Ludo</title>
-  <style>
-    /* RESET & GLOBAL STYLES */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    /* HEADER STYLES */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8f9fa;
-      padding: 10px 20px;
-      border-bottom: 2px solid #ddd;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .logo-animation {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    nav ul li a:hover {
-      color: #007bff;
-    }
-
-    .highlight {
-    background-color: #ffd700; /* Couleur dorée */
-    color: #000; /* Texte noir */
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .highlight:hover {
-        transform: scale(1.1); /* Agrandissement au survol */
-        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /*MAIN SECTION*/
-    
-    .play-btn {
-      display: inline-block;
-      background-color: #007bff;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.5rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s, background-color 0.3s;
-    }
-
-    .play-btn:hover {
-      background-color: #0056b3;
-      transform: scale(1.1);
-    }
-
-    .main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: calc(100vh - 100px); /* Full viewport minus header/footer */
-      text-align: center;
-      background-color: #f0e68c;
-    }
-
-    .main h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    /* FOOTER STYLES */
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8f9fa;
-      padding: 10px 20px;
-      border-top: 2px solid #ddd;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .footer-left {
-      font-size: 0.9rem;
-      color: #333;
-    }
-
-   
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Ludo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img src="css/ludo_image.png" alt="Logo LudoKing" class="logo">
+            <img src="images/ludo_image.png" alt="Logo LudoKing" class="logo">
             <span class="logo-animation">LudoWeb</span>
         </div>
         <nav>
-            <ul>
-                <li><a href="regles.html" class="highlight">Règles du Jeu</a></li>
-            </ul>
+            <a href="regles.html" class="highlight">Règles du Jeu</a>
         </nav>
     </header>
 
-    <main class="main">
+    <main class="board">
         <h1>Bienvenue sur Ludo Web !</h1>
         <button class="play-btn" onclick="startGame()">Jouer Maintenant</button>
-        
-        <!-- Section où l'iframe sera insérée -->
-        <div id="game-container" style="width: 100%; margin-top: 10px;"></div>
+        <div id="game-container"></div>
     </main>
 
     <footer>
         <div class="footer-left">
-            <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
+            <p>Ludo Web 2025 développé par : <strong>Thibault EYNARD-SUAREZ - Nabil BENKERDACH - Youssouf Ben Abdallah THIOR</strong></p>
         </div>
         <div class="social-icons">
             <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
@@ -217,5 +73,4 @@
         });
     </script>
 </body>
-
-
+</html>
