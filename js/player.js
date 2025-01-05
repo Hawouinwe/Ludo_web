@@ -1,4 +1,3 @@
-import { printNextTurn } from "./ui.js";
 import { idCaseAbs, idFinalPath } from "./board.js";
 import { Dice } from "./dice.js";
 

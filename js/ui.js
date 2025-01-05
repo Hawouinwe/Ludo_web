@@ -1,88 +1,79 @@
-// - `getPlayerInfo(playerId)` : Récupère les informations d'un joueur (nom, couleur, position, etc.).
-// - `getPlayers()` : Récupère la liste de tous les joueurs.
-// - `initializeBoard()`: Affiche le plateau (avec une petite animation) et place les joueurs existant dans leur safe zone
-
-// afficher la fin du jeu (donc le gagnant)
-
 import { Player } from "./player.js";
 import { game } from "./game.js";
 
-document.addEventListener('keydown', handleEnter);
 let players;
 let numPlayers;
 
+// Initialise une nouvelle partie
 function initGame() {
-	players = [];
-	numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
-	createPlayers();
-	initializeBoard();
-	game();
+    players = [];
+    numPlayers = prompt("Vous êtes combien à jouer ? (2 à 4 joueurs)", 2);
+    createPlayers();
+    initializeBoard();
+    game();
 }
 
+// Crée les joueurs en fonction du nombre choisi
 function createPlayers() {
-	numPlayers = Math.max(2, Math.min(4, parseInt(numPlayers))); 
-	for (let i = 0; i < numPlayers; i++) {
-		let name = prompt(`Entrez le pseudo du joueur ${i + 1} :`, `Joueur ${i + 1}`);
-		createPlayer(name);
-	}
+    // Limite le nombre de joueurs entre 2 et 4
+    numPlayers = Math.max(2, Math.min(4, parseInt(numPlayers))); 
+    
+    // Demande le pseudo de chaque joueur
+    for (let i = 0; i < numPlayers; i++) {
+        let name = prompt(`Entrez le pseudo du joueur ${i + 1} :`, `Joueur ${i + 1}`);
+        createPlayer(name);
+    }
 
-	players.forEach((player) => {
-		console.log(player)
-		const home = document.querySelector(`#home_${player.color}`);
-
-		const pseudoElements = home.querySelectorAll('.pseudo');
-	    pseudoElements.forEach(pseudo => {
-	        pseudo.remove();
-	    });
-
-		home.innerHTML = `${home.innerHTML} <p class='pseudo' id='pseudo_player_${player.id}'>${player.name}</p>`;
-	})
+    // Affiche les pseudos des joueurs sur le plateau
+    players.forEach((player) => {
+        const home = document.querySelector(`#home_${player.color}`);
+        // Supprime les anciens pseudos s'il y en a
+        const pseudoElements = home.querySelectorAll('.pseudo');
+        pseudoElements.forEach(pseudo => {
+            pseudo.remove();
+        });
+        // Ajoute le nouveau pseudo
+        home.innerHTML = `${home.innerHTML} <p class='pseudo' id='pseudo_player_${player.id}'>${player.name}</p>`;
+    })
 }
 
+// Crée un nouveau joueur avec un nom et une couleur
 function createPlayer(name = `Player ${players.length + 1}`) {
-	const id = players.length + 1;
-	const color = getColor(players.length);
-	players.push(new Player(id, name, color));
+    const id = players.length + 1;
+    const color = getColor(players.length);
+    players.push(new Player(id, name, color));
 }
 
+// Attribue une couleur en fonction du nombre de joueurs
 function getColor(idColor) {
-	let colors
-	if (numPlayers === 2) {
-		colors = ["red", "yellow", "blue", "green"];
-	} else {
-		colors = ["red", "blue", "yellow", "green"];
-	}
-	return colors[idColor];
+    let colors
+    if (numPlayers === 2) {
+        colors = ["red", "yellow", "blue", "green"];
+    } else {
+        colors = ["red", "blue", "yellow", "green"];
+    }
+    return colors[idColor];
 }
 
-function printNextTurn(actualPlayer = -1) {
-	let nextPlayer;
-	if (actualPlayer === -1) {
-		nextPlayer = players[0];
-	} else {
-		nextPlayer = players[(actualPlayer + 1) % numPlayers];
-	}
-	alert(`${nextPlayer.name}, c'est ton tour!`);
-	return nextPlayer;
-}
-
+// Met en évidence le joueur actif
 function updateActivePlayer(playerId) {
     document.querySelectorAll('.pseudo').forEach(player => {
         player.classList.remove('active-player');
     });
-    
     document.querySelector(`#pseudo_player_${playerId}`).classList.add('active-player');
 }
 
+// Gère l'événement de la touche Entrée
 function handleEnter(event) {
-	if (event.key === "Enter" || event.key === " ") {
-		console.log("Lancer de dé...");
-	}
+    if (event.key === "Enter" || event.key === " ") {
+        console.log("Lancer de dé...");
+    }
 }
 
+// Initialise le plateau de jeu
 function initializeBoard() {
-	// supprimer tous les pions du plateau
-	for (let playerId = 1; playerId <= 4; playerId++) {
+    // Supprime tous les pions existants
+    for (let playerId = 1; playerId <= 4; playerId++) {
         for (let pawnId = 0; pawnId <= 3; pawnId++) {
             const pawnElement = document.getElementById(`${playerId}_${pawnId}`);
             if (pawnElement) {
@@ -90,17 +81,17 @@ function initializeBoard() {
             }
         }
     }
-	// Ajouter les pions pour la nouvelle partie
-	for (const player of players) {
-		for (const pawn of player.pawns) {
-			const subhome = document.querySelector(`#subhome_${player.color}_${pawn.id}`);
-			subhome.innerHTML = `<img id="${player.id}_${pawn.id}" src="images/icones_joueurs/${player.color}.png">`
-		}
-	}
+    
+    // Place les pions dans leur position initiale
+    for (const player of players) {
+        for (const pawn of player.pawns) {
+            const subhome = document.querySelector(`#subhome_${player.color}_${pawn.id}`);
+            subhome.innerHTML = `<img id="${player.id}_${pawn.id}" src="images/icones_joueurs/${player.color}.png">`
+        }
+    }
 }
 
-
-// Animation fenetre d'alerte
+// Affiche une alerte personnalisée
 function showCustomAlert(title, content, end = false) {
     const overlay = document.getElementById('alertOverlay');
     const alertBox = overlay.querySelector('.custom-alert');
@@ -108,18 +99,21 @@ function showCustomAlert(title, content, end = false) {
     const contentElement = document.getElementById('alertContent');
     const replayButton = document.getElementById('replayButton');
     const okButton = document.getElementById('alertButton');
+    
     titleElement.textContent = title;
 
     if (end) {
+        // Affiche le classement final
         const classment = content.map((pseudo, index) => {
-        	if (index === 0) {
-        		return `<div class="ranking-item">${index + 1} - ${pseudo} 👑</div>`;
-        	} else {
-            	return `<div class="ranking-item">${index + 1} - ${pseudo}</div>`;
-        	}
+            if (index === 0) {
+                return `<div class="ranking-item">${index + 1} - ${pseudo} 👑</div>`;
+            } else {
+                return `<div class="ranking-item">${index + 1} - ${pseudo}</div>`;
+            }
         }).join('');
         contentElement.innerHTML = classment;
         
+        // Affiche le bouton pour rejouer
         replayButton.style.display = 'inline-block';
         replayButton.onclick = () => {
             closeAlert();
@@ -134,28 +128,28 @@ function showCustomAlert(title, content, end = false) {
     }
 
     overlay.style.display = 'block';
-
     requestAnimationFrame(() => {
         alertBox.classList.add('slide-in');
     });
 }
 
+// Ferme l'alerte personnalisée avec animation
 function closeAlert() {
     const overlay = document.getElementById('alertOverlay');
     const alertBox = overlay.querySelector('.custom-alert');
 
-    // Animate out
     alertBox.classList.remove('slide-in');
     alertBox.classList.add('slide-out');
 
-    // Hide overlay after animation
     setTimeout(() => {
         overlay.style.display = 'none';
         alertBox.classList.remove('slide-out');
     }, 1000);
 }
+
 document.getElementById('alertButton').addEventListener('click', closeAlert);
 
+// Lance le jeu
 initGame();
 
-export { printNextTurn, showCustomAlert, closeAlert, numPlayers, players, updateActivePlayer, initGame };
+export { showCustomAlert, closeAlert, numPlayers, players, updateActivePlayer, initGame };
