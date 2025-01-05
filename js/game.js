@@ -282,7 +282,7 @@ async function gameLoop(n) {
 
 
 async function game() {
-    let endGame = false ;
+    let endGame = true ;
     let i = 0 ;
     let classment = [];
     while (!endGame) {
@@ -299,6 +299,11 @@ async function game() {
             endGame = true ;
         }
         i++ ;
+    }
+    for (let p = 0; p < players.length; p++) {
+        if (!players[p].hasWon()) {
+            classment.push(players[p].name);
+        }
     }
     endOfGame(classment) ;
 }
