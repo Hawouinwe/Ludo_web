@@ -42,6 +42,10 @@ body {
     border: 2px solid black;
 }
 
+.path{
+    background-color: white;
+}
+
 .board div {
     border: 1px solid black; /* Light border for each square */
     overflow: hidden;
