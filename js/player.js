@@ -247,12 +247,13 @@ class Pawn {
 
     moveInFinalPath(steps) {
         this.endPosition += steps;
-        const idCaseFinalPath = idFinalPath(this.color, this.endPosition);
-        this.updateBoard(idCaseFinalPath);
+        let idCaseFinalPath = idFinalPath(this.color, this.endPosition);
         if (this.endPosition === 6) {
             this.hasFinished = true ;
             console.log(`${this.id} a fini !!!!!`) ;
+            idCaseFinalPath = `subcenter_${this.color}_${this.id}` ;
         }
+        this.updateBoard(idCaseFinalPath);
     }
     
 

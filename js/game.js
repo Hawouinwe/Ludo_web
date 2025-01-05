@@ -50,7 +50,7 @@ function tryAndEat(player, pawn) {
                 //console.log(`Pion ${p}`) ;
                 //console.log(`position : ${relativeIdToAbsoluteId(players[i].pawns[p].position, players[i].color)}`) ;
                 //console.log(`rel pos : ${players[i].pawns[p].position}, ${players[i].pawns[p].position !== 0}`) ;
-                if(players[i].pawns[p].position !== 0 && !players[i].pawns[p].hasFinished && relativeIdToAbsoluteId(players[i].pawns[p].position, players[i].color) === pos) {
+                if(players[i].pawns[p].position !== 0 && !players[i].pawns[p].hasFinished && !players[i].pawns[p].endPath && relativeIdToAbsoluteId(players[i].pawns[p].position, players[i].color) === pos) {
                     players[i].enterStartZone(p) ;
                     hasEaten = true ;
                     //console.log(`${player.color} a mangé ${players[i].color} !`) ;

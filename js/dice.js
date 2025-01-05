@@ -66,7 +66,7 @@ class Dice {
     return new Promise((resolve) => {
       const onClick = () => {
         // Generate a random number between 1 and 6
-        this.result = forTestOnly() ; //Math.floor(Math.random() * 6) + 1; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        this.result = Math.floor(Math.random() * 6) + 1; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
         // Remove existing 'show-X' classes
         for (let i = 1; i <= 6; i++) {
