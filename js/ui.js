@@ -63,13 +63,6 @@ function updateActivePlayer(playerId) {
     document.querySelector(`#pseudo_player_${playerId}`).classList.add('active-player');
 }
 
-// Gère l'événement de la touche Entrée
-function handleEnter(event) {
-    if (event.key === "Enter" || event.key === " ") {
-        console.log("Lancer de dé...");
-    }
-}
-
 // Initialise le plateau de jeu
 function initializeBoard() {
     // Supprime tous les pions existants
