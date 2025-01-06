@@ -14,7 +14,7 @@
             <span class="logo-animation">LudoWeb</span>
         </div>
         <nav>
-            <a href="index.html" class="highlight">Accueil</a>
+            <a href="#" id="backOrHome" class="highlight">Accueil</a>
         </nav>
     </header>
 
@@ -74,5 +74,22 @@
             <a href="mailto:thior@insa-toulouse.fr"><i class="fas fa-envelope"></i></a>
         </div>
     </footer>
+    <script>
+        document.getElementById("backOrHome").addEventListener("click", function(event) {
+            event.preventDefault();
+            
+            // Récupérer la page précédente depuis sessionStorage
+            const previousPage = sessionStorage.getItem('currentPage');
+            
+            if (previousPage === 'index.html') {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Stocker le nom de la page courante dans sessionStorage
+        sessionStorage.setItem('currentPage', window.location.pathname.split('/').pop());
+    </script>
 </body>
 </html>

@@ -8,32 +8,24 @@
 	<link rel="stylesheet" href="./css/alert.css">
 	<link rel="stylesheet" href="./css/style_dice.css">
 	<link rel="stylesheet" href="./css/ludo_style.css">
-	
 </head>
 <body style="background-color: #f0e68c;">
 	<script type="module" src="js/board.js"></script>
 	<script type="module" src="js/ui.js"></script>
 	<script type="module" src="js/player.js"></script>
-	<script type="module" src="js/utils.js"></script>
 	<script type="module" src="js/dice.js"></script>
 	<script type="module" src="js/game.js"></script>
 
-	<header>
-		
-	</header>
-	  
-
-
 	<!-- Partie pour l'affichage de la fenetre d'alerte -->
 	<div class="custom-alert-overlay" id="alertOverlay">
-	    <div class="custom-alert">
-	        <h2 class="alert-title" id="alertTitle"></h2>
-	        <div class="alert-content" id="alertContent"></div>
-	        <div class="alert-buttons">
-	            <button class="alert-button" id="alertButton">OK</button>
-	            <button class="alert-button" id="replayButton" style="display: none;">Rejouer</button>
-	        </div>
-	    </div>
+		<div class="custom-alert">
+			<h2 class="alert-title" id="alertTitle"></h2>
+			<div class="alert-content" id="alertContent"></div>
+			<div class="alert-buttons">
+				<button class="alert-button" id="alertButton">OK</button>
+				<button class="alert-button" id="replayButton" style="display: none;">Rejouer</button>
+			</div>
+		</div>
 	</div>
 
 	<!-- Section du Plateau de jeu -->
@@ -192,60 +184,46 @@
 		<div class="path" id="path_40"> </div>
 	</section>
 
-	<section class="game">
-		<div class="container">
-		  <!-- Dé -->
-		  <section id="dice" class="dice">
+	<section class="dice-container">
+		<section id="dice" class="dice">
 			<div class="side one">
-			  <div class="dot one-1"></div>
+				<div class="dot one-1"></div>
 			</div>
 			<div class="side two">
-			  <div class="dot two-1"></div>
-			  <div class="dot two-2"></div>
+				<div class="dot two-1"></div>
+				<div class="dot two-2"></div>
 			</div>
 			<div class="side three">
-			  <div class="dot three-1"></div>
-			  <div class="dot three-2"></div>
-			  <div class="dot three-3"></div>
+				<div class="dot three-1"></div>
+				<div class="dot three-2"></div>
+				<div class="dot three-3"></div>
 			</div>
 			<div class="side four">
-			  <div class="dot four-1"></div>
-			  <div class="dot four-2"></div>
-			  <div class="dot four-3"></div>
-			  <div class="dot four-4"></div>
+				<div class="dot four-1"></div>
+				<div class="dot four-2"></div>
+				<div class="dot four-3"></div>
+				<div class="dot four-4"></div>
 			</div>
 			<div class="side five">
-			  <div class="dot five-1"></div>
-			  <div class="dot five-2"></div>
-			  <div class="dot five-3"></div>
-			  <div class="dot five-4"></div>
-			  <div class="dot five-5"></div>
+				<div class="dot five-1"></div>
+				<div class="dot five-2"></div>
+				<div class="dot five-3"></div>
+				<div class="dot five-4"></div>
+				<div class="dot five-5"></div>
 			</div>
 			<div class="side six">
-			  <div class="dot six-1"></div>
-			  <div class="dot six-2"></div>
-			  <div class="dot six-3"></div>
-			  <div class="dot six-4"></div>
-			  <div class="dot six-5"></div>
-			  <div class="dot six-6"></div>
+				<div class="dot six-1"></div>
+				<div class="dot six-2"></div>
+				<div class="dot six-3"></div>
+				<div class="dot six-4"></div>
+				<div class="dot six-5"></div>
+				<div class="dot six-6"></div>
 			</div>
-		  </section>
-		</div>
+		</section>
 		<!-- Bouton -->
-		<div id="roll" class="roll-button">
-		  <button>Lancer le dé !</button>
-		</div>
-	  </section>
-	  
-	  
-
-
-
-
-
-	<footer>
-		<!-- Youssouf -->
-	</footer>
-
+		<section id="roll" class="roll-button">
+			<button>Lancer le dé !</button>
+		</section>
+	</section>
 </body>
 </html>

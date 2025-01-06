@@ -1,44 +1,53 @@
-/* Styles pour le bouton */
+.dice-container {
+    position: relative;
+    right: -1%;
+    top: 15%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 200px;
+}
+
+.dice {
+    display: block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.roll-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 button {
-  position: relative;
-  margin-top: 20px;
-  padding: 15px 50px;
-  color: #fff;
-  background-color: #f4d35e;
-  border: none;
-  font-size: 20px;
-  border-radius: 20px;
-  box-shadow: 1px 3px #50514F;
-  outline: none;
-  transition: 0.3s;
+    position: relative;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: #f4d35e;
+    border: none;
+    font-size: 18px;
+    border-radius: 20px;
+    box-shadow: 1px 3px #50514F;
+    outline: none;
+    transition: 0.3s;
+    width: auto;
 }
 
 button:hover,
 button:active {
-  background: #50514F;
-  cursor: pointer;
-  transform: translateY(3px);
-}
-
-.game {
-  position: relative;
-  width: auto;
-  height: 100%; 
-}
-
-.container {
-  position: relative;
-  display: inline-block;
-  top: 200px;
-}
-
-/* Styles pour le dé */
-.dice {
-  position: relative;
-  width: 100px;
-  height: 70px;
-  transform-style: preserve-3d;
-  transition: transform 1s; 
+    background: #50514F;
+    cursor: pointer;
+    transform: translateY(3px);
 }
 
 
@@ -65,23 +74,12 @@ button:active {
 
 
 /* Animation pour les faces */
-.side:nth-child(1) {
-  transform: translateZ(3.1em); }
-
-.side:nth-child(6) {
-  transform: rotateY(90deg) translateZ(3.1em); }
-
-.side:nth-child(3) {
-  transform: rotateY(-90deg) translateZ(3.1em); }
-
-.side:nth-child(4) {
-  transform: rotateX(90deg) translateZ(3.1em); }
-
-.side:nth-child(5) {
-  transform: rotateX(-90deg) translateZ(3.1em); }
-
-.side:nth-child(2) {
-  transform: rotateY(-180deg) translateZ(3.1em); }
+.side:nth-child(1) { transform: translateZ(50px); }
+.side:nth-child(6) { transform: rotateY(90deg) translateZ(50px); }
+.side:nth-child(3) { transform: rotateY(-90deg) translateZ(50px); }
+.side:nth-child(4) { transform: rotateX(90deg) translateZ(50px); }
+.side:nth-child(5) { transform: rotateX(-90deg) translateZ(50px); }
+.side:nth-child(2) { transform: rotateY(-180deg) translateZ(50px); }
 
 .show-1 {
   transform: rotateX(720deg) rotateZ(-720deg); }

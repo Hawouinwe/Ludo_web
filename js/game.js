@@ -184,7 +184,7 @@ function selectPawn(selectableForExit, selectableForMoving, player) {
         // Met en surbrillance les pions sélectionnables et gère les clics
         allSelectable.forEach((pawnIndex) => {
             const pawnElement = player.pawns[pawnIndex].currentElement; 
-            console.log(`pawnElement : ${pawnElement}`);
+            // console.log(`pawnElement : ${pawnElement}`);
             pawnElement.classList.add('highlight'); 
             pawnElement.classList.add('highlight');
 
@@ -231,7 +231,5 @@ async function game() {
 function endOfGame(classment) {
     showCustomAlert("Classement final !", classment, true);
 }
-
-game();
 
 export { game };
