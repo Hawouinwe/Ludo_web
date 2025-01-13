@@ -21,6 +21,7 @@ function createPlayers() {
     // Demande le pseudo de chaque joueur
     for (let i = 0; i < numPlayers; i++) {
         let name = prompt(`Entrez le pseudo du joueur ${i + 1} :`, `Joueur ${i + 1}`);
+        name = name.slice(0, 50);
         createPlayer(name);
     }
 

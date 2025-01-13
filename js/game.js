@@ -1,3 +1,4 @@
+// pions mangé redevenir taille grand
 import { Player, Pawn } from "./player.js"
 import { players, numPlayers, showCustomAlert, closeAlert, updateActivePlayer } from "./ui.js";
 import { idCaseAbs, relativeIdToAbsoluteId } from "./board.js";
@@ -41,6 +42,10 @@ function tryAndEat(player, pawn) {
                    relativeIdToAbsoluteId(players[i].pawns[p].position, players[i].color) === pos) {
                     players[i].enterStartZone(p);
                     hasEaten = true;
+                    console.log("Le pion pawn:" + pawn);
+                    
+                    const temp = document.getElementById(`${player.id}_${pawn}`);
+                    temp.classList.remove('multiple');
                 }
             }
         }
@@ -225,6 +230,7 @@ async function game() {
         }
         i++;
     }
+    endOfGame(classment);
 }
 
 // Affiche le classement final

@@ -19,10 +19,17 @@ body {
         1px -1px 0 white,  
         -1px 1px 0 white;
     padding-left: 2px;
+    padding-top: 10px;
 }
 
 .active-player {
     color: purple;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
 .highlight {
@@ -46,7 +53,7 @@ body {
     background-color: white;
 }
 
-.board div {
+.board div:not(.pawns-container){
     border: 1px solid black; /* Light border for each square */
     overflow: hidden;
 }
